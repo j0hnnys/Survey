@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
-
+    tools:context=".MainActivity"
+    app:theme="@style/SurveyAppTheme">
 
     <TextView
         android:layout_width="wrap_content"

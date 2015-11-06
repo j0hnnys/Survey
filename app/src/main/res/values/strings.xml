@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Survey</string>
     <string name="action_settings">Settings</string>
+
+    <string name="question1_text_view">What is your favorite food?</string>
+    <string name="answer_hint_text_view">Enter your answer here</string>
 </resources>
