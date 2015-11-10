@@ -9,8 +9,8 @@ public class Survey {
     String mName;
     ArrayList<Question> mQuestions;
 
-    public Survey() {
-
+    public Survey(String n) {
+        mName = n;
     }
 
     public String getName() {
