@@ -13,13 +13,16 @@ import android.widget.LinearLayout;
  */
 public class SurveyFragment extends Fragment {
 
-    LinearLayout 
+    LinearLayout surveyLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_survey_template, container, false);
 
+        surveyLayout = (LinearLayout) v.findViewById(R.id.survey_template_view);
+
+        
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
