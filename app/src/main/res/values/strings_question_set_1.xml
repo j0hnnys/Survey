@@ -3,6 +3,11 @@
 
     <string name="qset_1_question1_text_view">What is your name?</string>
     <string name="qset_1_question2_text_view">Are you a CMPE or SE major?</string>
+    <string-array name="qset_1_answers2">
+        <item>CMPE</item>
+        <item>SE</item>
+    </string-array>
+
     <string name="qset_1_question3_text_view">Do you prefer iOS or Android develop?</string>
     <string name="qset_1_question4_text_view">Did you have any previous experience in iOS or Android</string>
 
