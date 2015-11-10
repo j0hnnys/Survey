@@ -2,15 +2,13 @@ package com.project.se137.survey;
 
 import java.util.ArrayList;
 
-/**
- * Created by Johnny on 11/9/15.
- */
+
 public class Survey {
     String mName;
     ArrayList<Question> mQuestions;
 
-    public Survey() {
-
+    public Survey(String n) {
+        mName = n;
     }
 
     public String getName() {

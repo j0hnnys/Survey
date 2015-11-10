@@ -12,7 +12,8 @@ public class Question {
     //  True -> CheckBox, False -> Radio
     boolean mMultiAnswer;
 
-    public Question(String q) {
-
+    public Question(String q, ArrayList<String> a) {
+        Question = q;
+        possibleAnswers = a;
     }
 }
