@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by Johnny on 11/9/15.
@@ -22,7 +23,7 @@ public class SurveyFragment extends Fragment {
 
         surveyLayout = (LinearLayout) v.findViewById(R.id.survey_template_view);
 
-        
+        TextView test;
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
