@@ -23,8 +23,6 @@ public class SurveyFragment extends Fragment {
 
         surveyLayout = (LinearLayout) v.findViewById(R.id.survey_template_view);
 
-        TextView test;
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
