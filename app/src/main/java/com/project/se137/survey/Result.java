@@ -3,7 +3,7 @@ package com.project.se137.survey;
 import java.util.ArrayList;
 
 /**
- * Stores the results to a survey.
+ * Stores the results of a completed survey.
  */
 public class Result {
     String mSurvey;
@@ -17,11 +17,19 @@ public class Result {
         mAnswer = a;
     }
 
-    public void setQuestion(String q) { mQuestion = q; }
+    public void setQuestion(String q) {
+        mQuestion = q;
+    }
 
-    public String getAnswer() { return mAnswer; }
+    public String getAnswer() {
+        return mAnswer;
+    }
 
-    public void setAnswer(String a) { mAnswer = a; }
+    public void setAnswer(String a) {
+        mAnswer = a;
+    }
 
-    public String getQuestion() { return mQuestion; }
+    public String getQuestion() {
+        return mQuestion;
+    }
 }
