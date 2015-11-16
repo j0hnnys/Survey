@@ -33,7 +33,7 @@ public class CreateSurveyFragment extends Fragment {
 
         // Declare initial variables to  the views in the layout file
         questionEditText = (EditText) v.findViewById(R.id.question_edit_text);
-        isMultiCheckBox = (CheckBox) v.findViewById(R.id.multi_question_text_view);
+        isMultiCheckBox = (CheckBox) v.findViewById(R.id.multi_question_checkbox);
         addButton = (Button) v.findViewById(R.id.add_button);
         createButton = (Button) v.findViewById(R.id.create_button);
 
@@ -50,6 +50,9 @@ public class CreateSurveyFragment extends Fragment {
 
                 // Obtain question and clear text
                 question = questionEditText.getText().toString();
+                questionEditText.setText(""); // clears text
+
+
             }
         };
     }
