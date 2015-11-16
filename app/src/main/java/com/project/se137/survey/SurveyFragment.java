@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -27,7 +29,7 @@ public class SurveyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate a view using layout inflater using the fragment_survey_template.xml file
+        // Inflate a view using layout inflater to inflate the fragment_survey_template.xml file
         View v = inflater.inflate(R.layout.fragment_survey_template, container, false);
 
         // Set surveyLayout to be LinearLayout in fragment layout file
@@ -43,6 +45,8 @@ public class SurveyFragment extends Fragment {
 
         Question q = new Question("Are you an SE or CMPE major?", answers);
         addQuestionSet(q);
+
+
 
         return v;
     }

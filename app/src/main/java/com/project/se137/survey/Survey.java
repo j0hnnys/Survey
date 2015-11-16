@@ -2,7 +2,6 @@ package com.project.se137.survey;
 
 import java.util.ArrayList;
 
-
 public class Survey {
     String mName;
     ArrayList<Question> mQuestions;
