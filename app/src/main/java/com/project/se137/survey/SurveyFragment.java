@@ -13,15 +13,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Johnny on 11/9/15.
@@ -44,27 +38,6 @@ public class SurveyFragment extends Fragment {
         // Set context to be getActivity. This is used repeatedly to create views in code.
         context = getActivity();
 
-        //Get Questions for supplied surveyName from Parse
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Questions");
-        query.whereEqualTo("surveyName", "TestSurvey");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done (List<ParseObject> results, ParseException e) {
-                if (e == null) {
-                    for (ParseObject object: results) {
-                        String questionText = object.getString("question");
-                        Boolean multi = object.getBoolean("multi");
-                        List<String> possibleAnswers = object.getList("possibleAnswers");
-                        ArrayList<String> answers = new ArrayList<String>();
-                        for(String s : possibleAnswers) {
-                            answers.add(s);
-                        }
-                        Question q = new Question(questionText, answers);
-                        questions.add(q);
-                    }
-                }
-            }
-        });
-
         // Testing addQuestionSet() function...
         ArrayList<String> answers = new ArrayList<>();
         answers.add("SE");
@@ -72,6 +45,8 @@ public class SurveyFragment extends Fragment {
 
         Question q = new Question("Are you an SE or CMPE major?", answers);
         addQuestionSet(q);
+
+
 
         return v;
     }
