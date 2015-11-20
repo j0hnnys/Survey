@@ -46,8 +46,6 @@ public class SurveyFragment extends Fragment {
         Question q = new Question("Are you an SE or CMPE major?", answers);
         addQuestionSet(q);
 
-
-
         return v;
     }
 

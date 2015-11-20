@@ -15,7 +15,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment getFragment();
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    protected void onCreate(Bundle savedInstanceState) {
         // Call superclass code for onCreate()
         super.onCreate(savedInstanceState);
 
@@ -31,7 +31,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         // is always good to check that.
         if (fragment == null) {
             fragment = getFragment();
-            fm.beginTransaction().add(R.id.survey_fragment_container, fragment);
+            fm.beginTransaction().add(R.id.survey_fragment_container, fragment).commit();
         }
     }
 }
