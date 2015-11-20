@@ -3,7 +3,6 @@ package com.project.se137.survey;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -20,18 +19,18 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set the view to be that of the layout file: fragment_survey_template.xml
-        setContentView(R.layout.fragment_survey_template);
+        setContentView(R.layout.activity_fragment);
 
         // Get support Fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Create fragment and set it to fragment located in fragment_survey_template.xml
-        Fragment fragment = fm.findFragmentById(R.id.survey_fragment_container);
+        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         // Error handling here; sometimes the target fragment might not exist so it
         // is always good to check that.
         if (fragment == null) {
             fragment = getFragment();
-            fm.beginTransaction().add(R.id.survey_fragment_container, fragment);
+            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }
 }

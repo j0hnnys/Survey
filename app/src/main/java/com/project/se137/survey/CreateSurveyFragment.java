@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +45,7 @@ public class CreateSurveyFragment extends Fragment {
         answerEditText4 = (EditText) v.findViewById(R.id.answer4_edit_text);
 
         addButton.setOnClickListener(addButtonListener());
+
         return v;
     }
 
@@ -62,14 +62,14 @@ public class CreateSurveyFragment extends Fragment {
                 answers = getAnswers();
                 // Create new Question object from the collected question string and answers
                 Question q = new Question(question, answers);
-
+                
                 questions.add(q);
             }
         };
     }
 
     // Function returns all non empty answers from the edit texts.
-    private ArrayList<String> getAnswers(){
+    private ArrayList<String> getAnswers() {
         ArrayList<String> answers = new ArrayList<String>();
 
         // Check each answer for empty strings
@@ -94,7 +94,7 @@ public class CreateSurveyFragment extends Fragment {
     }
 
     // Function checks for a valid number of answers (atleast 2)
-    private boolean validAnswers(){
+    private boolean validAnswers() {
         String answer = answerEditText1.getText().toString();
         // Only check answer 1 and 2 for strings.
         // No error checking for answers 3 and 4.

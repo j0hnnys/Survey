@@ -14,7 +14,6 @@
             android:text="Q:"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/question_edit_text"
             />
 
         <EditText
@@ -37,7 +36,6 @@
             android:text="A1:"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/answer1_edit_text"
             />
 
         <EditText
@@ -60,7 +58,6 @@
             android:text="A2:"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/answer2_edit_text"
             />
 
         <EditText
@@ -83,7 +80,6 @@
             android:text="A3:"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/answer3_edit_text"
             />
 
         <EditText
@@ -106,7 +102,6 @@
             android:text="A4:"
             android:textSize="20sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/answer4_edit_text"
             />
 
         <EditText
@@ -134,7 +129,6 @@
             android:text="Allow Multi Choice"
             android:textSize="16sp"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/answer4_edit_text"
             />
 
     </LinearLayout>
