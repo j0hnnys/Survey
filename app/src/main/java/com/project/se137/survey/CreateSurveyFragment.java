@@ -40,30 +40,23 @@ public class CreateSurveyFragment extends Fragment {
         isMultiCheckBox = (CheckBox) v.findViewById(R.id.multi_question_checkbox);
         addButton = (Button) v.findViewById(R.id.add_button);
         createButton = (Button) v.findViewById(R.id.create_button);
-        answerEditText1 = (EditText) v.findViewById(R.id.answer1_edit_text);
-        answerEditText2 = (EditText) v.findViewById(R.id.answer2_edit_text);
-        answerEditText3 = (EditText) v.findViewById(R.id.answer3_edit_text);
-        answerEditText4 = (EditText) v.findViewById(R.id.answer4_edit_text);
 
-        addButton.setOnClickListener(addButtonListener());
+
         return v;
     }
 
-    private View.OnClickListener addButtonListener() {
+    private View.OnClickListener addToSurvey() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String question;
-                ArrayList<String> answers;
+                ArrayList<String> answers = new ArrayList<>();
 
                 // Obtain question and clear text
                 question = questionEditText.getText().toString();
-                // Obtain answers using getAnswers() function
-                answers = getAnswers();
-                // Create new Question object from the collected question string and answers
-                Question q = new Question(question, answers);
+                questionEditText.setText(""); // clears text
 
-                questions.add(q);
+
             }
         };
     }
@@ -105,14 +98,4 @@ public class CreateSurveyFragment extends Fragment {
         return true;
     }
 
-    /**
-     * Clears the question and answers text fields
-     */
-    private void clearScreen() {
-        questionEditText.setText("");
-        answerEditText1.setText("");
-        answerEditText2.setText("");
-        answerEditText3.setText("");
-        answerEditText4.setText("");
-    }
 }
