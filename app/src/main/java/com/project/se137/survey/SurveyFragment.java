@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-<<<<<<< Updated upstream
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -21,8 +20,6 @@ import com.parse.ParseQuery;
 
 import org.json.JSONObject;
 
-=======
->>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +30,7 @@ public class SurveyFragment extends Fragment {
 
     LinearLayout surveyLayout;
     Context context;
+    ArrayList<Question> questions;
 
     @Nullable
     @Override
@@ -41,12 +39,11 @@ public class SurveyFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_survey_template, container, false);
 
         // Set surveyLayout to be LinearLayout in fragment layout file
-        surveyLayout = (LinearLayout) v.findViewById(R.id.survey_template_fragment);
+        surveyLayout = (LinearLayout) v.findViewById(R.id.survey_fragment_container);
 
         // Set context to be getActivity. This is used repeatedly to create views in code.
         context = getActivity();
 
-<<<<<<< Updated upstream
         //Get Questions for supplied surveyName from Parse
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Questions");
         query.whereEqualTo("surveyName", "TestSurvey");
@@ -69,13 +66,10 @@ public class SurveyFragment extends Fragment {
         });
 
         // Testing addQuestionSet() function...
-=======
-        // Testing addQuestionSet() function
-        // by adding hard-coded question
->>>>>>> Stashed changes
         ArrayList<String> answers = new ArrayList<>();
         answers.add("SE");
         answers.add("CMPE");
+
         Question q = new Question("Are you an SE or CMPE major?", answers);
         addQuestionSet(q);
 
