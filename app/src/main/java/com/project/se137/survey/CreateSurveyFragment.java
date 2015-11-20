@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -19,10 +18,7 @@ import java.util.ArrayList;
 public class CreateSurveyFragment extends Fragment {
 
     EditText questionEditText;
-    EditText answerEditText1;
-    EditText answerEditText2;
-    EditText answerEditText3;
-    EditText answerEditText4;
+    EditText answerEditText;
     CheckBox isMultiCheckBox;
     Button addButton;
     Button createButton;
@@ -60,42 +56,4 @@ public class CreateSurveyFragment extends Fragment {
             }
         };
     }
-
-    // Function returns all non empty answers from the edit texts.
-    private ArrayList<String> getAnswers(){
-        ArrayList<String> answers = new ArrayList<String>();
-
-        // Check each answer for empty strings
-        String answer = answerEditText1.getText().toString();
-        if(answer.isEmpty()){
-            answers.add(answer);
-        }
-        answer = answerEditText2.getText().toString();
-        if(answer.isEmpty()){
-            answers.add(answer);
-        }
-        answer = answerEditText3.getText().toString();
-        if(answer.isEmpty()){
-            answers.add(answer);
-        }
-        answer = answerEditText4.getText().toString();
-        if(answer.isEmpty()){
-            answers.add(answer);
-        }
-
-        return answers;
-    }
-
-    // Function checks for a valid number of answers (atleast 2)
-    private boolean validAnswers(){
-        String answer = answerEditText1.getText().toString();
-        // Only check answer 1 and 2 for strings.
-        // No error checking for answers 3 and 4.
-        if(answerEditText1.getText().toString().isEmpty() || answerEditText2.getText().toString().isEmpty()){
-            return false;
-        }
-
-        return true;
-    }
-
 }
