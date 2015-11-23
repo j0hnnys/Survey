@@ -4,4 +4,6 @@
 
     <string name="question1_text_view">What is your favorite food?</string>
     <string name="answer_hint_text_view">Enter your answer here</string>
+
+    <string name="facebook_app_id">1489526114686435</string>
 </resources>
