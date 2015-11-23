@@ -14,12 +14,23 @@ public class Question {
     // Possible answers to the question
     private List<String> possibleAnswers;
     //  True -> CheckBox, False -> Radio
-    boolean mMultiAnswer;
+    private boolean mMultiAnswer;
 
+<<<<<<< HEAD
     public Question(String q, Boolean m,  List<String> a) {
         Question = q;
         possibleAnswers = a;
         mMultiAnswer = m;
+=======
+    public Question(String q, ArrayList<String> a, boolean multiAnswer) {
+        Question = q;
+        possibleAnswers = a;
+        mMultiAnswer = multiAnswer;
+    }
+
+    public boolean isMultiAnswer() {
+        return mMultiAnswer;
+>>>>>>> origin/master
     }
 
     public String getQuestion() {
