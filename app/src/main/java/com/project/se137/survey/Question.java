@@ -1,6 +1,7 @@
 package com.project.se137.survey;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a single question with multiple answers.
@@ -11,20 +12,26 @@ public class Question {
     // The question
     private String Question;
     // Possible answers to the question
-    private ArrayList<String> possibleAnswers;
+    private List<String> possibleAnswers;
     //  True -> CheckBox, False -> Radio
     boolean mMultiAnswer;
 
-    public Question(String q, ArrayList<String> a) {
+    public Question(String q, Boolean m,  List<String> a) {
         Question = q;
         possibleAnswers = a;
+        mMultiAnswer = m;
     }
 
     public String getQuestion() {
         return Question;
     }
 
-    public ArrayList<String> getPossibleAnswers() {
+    public List<String> getPossibleAnswers() {
         return possibleAnswers;
+    }
+
+    @Override
+    public String toString() {
+        return Question + " " + mMultiAnswer + " " + possibleAnswers.toString();
     }
 }
