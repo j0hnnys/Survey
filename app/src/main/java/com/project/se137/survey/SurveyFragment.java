@@ -43,7 +43,7 @@ public class SurveyFragment extends Fragment {
         answers.add("SE");
         answers.add("CMPE");
 
-        Question q = new Question("Are you an SE or CMPE major?", answers);
+        Question q = new Question("Are you an SE or CMPE major?", answers, true);
         addQuestionSet(q);
 
         return v;
@@ -61,7 +61,7 @@ public class SurveyFragment extends Fragment {
 
         // Add answers corresponding to question
         View view;
-        if (q.mMultiAnswer) { // Create CheckBoxes if true
+        if (q.isMultiAnswer()) { // Create CheckBoxes if true
             view = createCheckBoxGroup(q.getPossibleAnswers());
         } else { // else create radiogroup
             view = createRadioGroup(q.getPossibleAnswers());
