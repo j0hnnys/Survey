@@ -15,6 +15,7 @@ public class MainFragment extends Fragment {
     Button createSurveyButton;
     Button takeSurveyButton;
     Button resultsButton;
+    Button logInButton;
 
     @Nullable
     @Override
@@ -26,6 +27,7 @@ public class MainFragment extends Fragment {
         createSurveyButton = (Button) v.findViewById(R.id.create_suvey_button);
         takeSurveyButton = (Button) v.findViewById(R.id.take_survey_button);
         resultsButton = (Button) v.findViewById(R.id.results_button);
+        logInButton = (Button) v.findViewById(R.id.log_in_button);
 
         createSurveyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,14 @@ public class MainFragment extends Fragment {
         });
 
         resultsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
