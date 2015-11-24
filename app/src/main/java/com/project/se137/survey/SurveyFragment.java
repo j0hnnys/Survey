@@ -42,38 +42,34 @@ public class SurveyFragment extends Fragment {
         // Set context to be getActivity. This is used repeatedly to create views in code.
         context = getActivity();
 
-        System.out.println("Begin Querying Server...");
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
-        query.whereEqualTo("surveyName", "TestSurvey");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> results, ParseException e) {
-                if (e == null) {
-                    System.out.println("Query Successfull");
-                    for (ParseObject object: results) {
-                        String questionText = object.getString("question");
-                        Boolean multi = object.getBoolean("multi");
-                        List<String> possibleAnswers = object.getList("possibleAnswers");
-                        System.out.println(questionText + " " + multi + " "  +possibleAnswers.toString());
-                        Question question = new Question(questionText, multi, possibleAnswers);
-                        questions.add(question);
-                    }
-                }
-                else {
-                    System.out.println("Query Failed");
-                }
-            }
-        });
+//        System.out.println("Begin Querying Server...");
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
+//        query.whereEqualTo("surveyName", "TestSurvey");
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> results, ParseException e) {
+//                if (e == null) {
+//                    System.out.println("Query Successfull");
+//                    for (ParseObject object: results) {
+//                        String questionText = object.getString("question");
+//                        Boolean multi = object.getBoolean("multi");
+//                        List<String> possibleAnswers = object.getList("possibleAnswers");
+//                        System.out.println(questionText + " " + multi + " "  +possibleAnswers.toString());
+//                        Question question = new Question(questionText, multi, possibleAnswers);
+//                        questions.add(question);
+//                    }
+//                }
+//                else {
+//                    System.out.println("Query Failed");
+//                }
+//            }
+//        });
 
         // Testing addQuestionSet() function...
         ArrayList<String> answers = new ArrayList<>();
         answers.add("SE");
         answers.add("CMPE");
 
-<<<<<<< HEAD
-        Question q = new Question("Are you an SE or CMPE major?", false,  answers);
-=======
-        Question q = new Question("Are you an SE or CMPE major?", answers, true);
->>>>>>> origin/master
+        Question q = new Question("Are you an SE or CMPE major?", answers,  false);
         addQuestionSet(q);
 
         return v;
