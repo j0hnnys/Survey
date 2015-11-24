@@ -53,16 +53,39 @@ public class LogInFragment extends Fragment {
             public void onClick(View v) {
                 String username;
                 String password;
+                boolean valid = false;
 
                 username = usernameEditText.getText().toString();
 
                 password = passwordEditText.getText().toString();
 
+                // INPUT VALIDATION
+                if ( username.length() == 0 ) { usernameEditText.setError("Username is required!");
+                } else if ( username.length() < 4 ) { usernameEditText.setError("min 4 characters"); }
+
+                if ( password.length() == 0 ) { passwordEditText.setError("Password is required!");
+                } else if ( password.length() < 4 ) { passwordEditText.setError("min 4 characters"); }
+
                 //Checks in Hashmap, whether username is already used and creates Toasts.
-                if (accounts.containsKey(username)) {
-                    Toast.makeText(v.getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
+                if (username.length() >= 4 && password.length() >= 4) {
+                    if (accounts.containsKey(username)) {
+                        usernameEditText.setError("Try another");
+                        Toast.makeText(v.getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
+                    } else if ( username == password ) {
+                        Toast.makeText(v.getContext(), "Username and Password must be different", Toast.LENGTH_SHORT).show();
+                    } else {
+                        valid = true;
+                    }
+                } else if (username.length() == 0 && password.length() == 0) {
+                    Toast.makeText(v.getContext(), "You need to input both Username and Password", Toast.LENGTH_SHORT).show();
                 } else {
+                    Toast.makeText(v.getContext(), "Both Username and Password must be longer than 3", Toast.LENGTH_SHORT).show();
+                }
+
+                if (valid) {
                     accounts.put(username, password);
+                    usernameEditText.setText(""); // clears text
+                    passwordEditText.setText("");
                     Toast.makeText(v.getContext(), "Account was created successfully!", Toast.LENGTH_SHORT).show();
                 }
 
