@@ -7,8 +7,5 @@
 
     <string name="facebook_app_id">1489526114686435</string>
     <string name="share">Share</string>
-    <string name="username">Username:</string>
-    <string name="password">Password:</string>
-    <string name="log_in">Log In</string>
-    <string name="create_account">Create Account</string>
+
 </resources>

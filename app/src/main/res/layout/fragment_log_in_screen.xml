@@ -43,9 +43,56 @@
 
         <EditText
             android:id="@+id/password_edit_text"
+            android:inputType="textPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentRight="true"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_retype"
+            android:textSize="24sp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/password_retype_text"
+            />
+
+        <EditText
+            android:id="@+id/password_retype_edit_text"
+            android:inputType="textPassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
+
+        <CheckBox
+            android:id="@+id/show_password_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_password"
+            android:textSize="16sp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/show_password_checkbox"
             />
 
     </LinearLayout>
@@ -54,7 +101,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp">>
+        android:paddingTop="20dp">
 
         <Button
             android:id="@+id/log_in_button"
