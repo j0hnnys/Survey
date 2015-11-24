@@ -17,11 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".CreateSurveyActivity"/>
         <activity android:name=".SurveyActivity"/>
-=======
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges=
@@ -35,7 +32,5 @@
         <provider android:authorities="com.facebook.app.FacebookContentProvider1489526114686435"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
-
->>>>>>> origin/master
     </application>
 </manifest>
