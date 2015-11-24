@@ -6,34 +6,32 @@
     android:gravity="center">
 
     <Button
+        android:id="@+id/create_suvey_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Create"
-        android:onClick="onCreateSurveyClicked"/>
+        android:text="Create"/>
 
     <android.widget.Space
         android:layout_width="1dp"
         android:layout_height="10dp"/>
 
     <Button
+        android:id="@+id/take_survey_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Survey"
-        android:onClick="onViewSurveyClicked"/>
+        android:text="Surveys"/>
 
     <android.widget.Space
         android:layout_width="1dp"
         android:layout_height="10dp"/>
 
     <Button
+        android:id="@+id/results_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="Result"
-        android:onClick="onViewResultClicked"/>
-
-
+        android:text="Result"/>
 
 </LinearLayout>

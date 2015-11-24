@@ -11,13 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
         android:name=".App">
-        <activity android:name=".SurveyActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".CreateSurveyActivity"/>
+        <activity android:name=".SurveyActivity"/>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges=
@@ -31,6 +32,5 @@
         <provider android:authorities="com.facebook.app.FacebookContentProvider1489526114686435"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
-
     </application>
 </manifest>
