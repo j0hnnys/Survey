@@ -18,13 +18,4 @@ public class MainActivity extends SingleFragmentActivity {
         Intent createSurveyIntent = new Intent(this, CreateSurveyActivity.class);
         startActivity(createSurveyIntent);
     }
-
-    public void onViewSurveyClicked(View v){
-        Intent surveyIntent = new Intent(this, SurveyActivity.class);
-        startActivity(surveyIntent);
-    }
-
-    public void onViewResultClicked(View v){
-
-    }
 }

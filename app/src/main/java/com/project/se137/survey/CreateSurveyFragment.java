@@ -38,10 +38,12 @@ public class CreateSurveyFragment extends Fragment {
         addButton = (Button) v.findViewById(R.id.add_button);
         completeButton = (Button) v.findViewById(R.id.complete_button);
 
+        addButton.setOnClickListener(addToSurveyListener());
+
         return v;
     }
 
-    private View.OnClickListener addToSurvey() {
+    private View.OnClickListener addToSurveyListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {

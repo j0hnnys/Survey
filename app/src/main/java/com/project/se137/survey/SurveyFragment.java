@@ -1,6 +1,7 @@
 package com.project.se137.survey;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -64,7 +65,7 @@ public class SurveyFragment extends Fragment {
 //            }
 //        });
 
-        // Testing addQuestionSet() function...
+        // TEST CODE BELOW
         ArrayList<String> answers = new ArrayList<>();
         answers.add("SE");
         answers.add("CMPE");
