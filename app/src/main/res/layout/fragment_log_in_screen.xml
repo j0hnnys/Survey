@@ -72,10 +72,10 @@
         android:paddingTop="20dp">
 
         <Button
-            android:id="@+id/create_user_button"
+            android:id="@+id/create_account_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_user"
+            android:text="@string/create_account"
             android:textSize="20sp"/>
 
     </LinearLayout>
