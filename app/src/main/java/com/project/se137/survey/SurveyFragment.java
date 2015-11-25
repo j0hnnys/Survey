@@ -70,7 +70,7 @@ public class SurveyFragment extends Fragment {
         answers.add("SE");
         answers.add("CMPE");
 
-        Question q = new Question("Are you an SE or CMPE major?", answers,  false);
+        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
         addQuestionSet(q);
 
         return v;
@@ -83,7 +83,7 @@ public class SurveyFragment extends Fragment {
     private void addQuestionSet(Question q) {
         // Add question to layout
         TextView question = new TextView(getActivity());
-        question.setText(q.getQuestion());
+        question.setText(getString(R.string.creator_and_question_placeholder, q.getCreator(), q.getQuestion()) );
         surveyLayout.addView(question);
 
         // Add answers corresponding to question

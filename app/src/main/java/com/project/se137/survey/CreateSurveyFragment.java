@@ -50,6 +50,8 @@ public class CreateSurveyFragment extends Fragment {
                 String q;
                 ArrayList<String> answers;
                 boolean multiAnswer;
+                // Should implement a creator attribute for survey for UserManagement
+                String creator = "";
 
                 // Obtain question and clear text
                 q = questionEditText.getText().toString();
@@ -62,7 +64,7 @@ public class CreateSurveyFragment extends Fragment {
                 multiAnswer = isMultiCheckBox.isChecked();
 
                 // Create question object and add to survey
-                Question question = new Question(q, answers, multiAnswer);
+                Question question = new Question(q, answers, multiAnswer, creator);
                 survey.add(question);
 
                 Toast.makeText(v.getContext(), "Question added to survey!", Toast.LENGTH_SHORT).show();
