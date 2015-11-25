@@ -25,24 +25,42 @@ public class Question {
         mCreator = creator;
     }
 
-    public boolean isMultiAnswer() {
-        return mMultiAnswer;
-    }
-
-    public String getQuestion() {
-        return Question;
-    }
-
-    public List<String> getPossibleAnswers() {
-        return possibleAnswers;
-    }
-    //getting te creator of survey
-    public String getCreator() {
-        return mCreator;
-    }
-
+    //PARSE
     @Override
     public String toString() {
         return Question + " " + mMultiAnswer + " " + possibleAnswers.toString() + " " + mCreator;
     }
+
+    //Getter Setter boolean isMultiAnswer
+    public boolean isMultiAnswer() {
+        return mMultiAnswer;
+    }
+    public void setMultiAnswer(boolean multiAnswer) {
+        mMultiAnswer = multiAnswer;
+    }
+
+    //Getter Setter String Question
+    public String getQuestion() {
+        return Question;
+    }
+    public void setQuestion(String question) {
+        Question = question;
+    }
+
+    //Getter Setter List<String> PossibleAnswers
+    public List<String> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+    public void setPossibleAnswers(List<String> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
+    //Getter and Setter String Creator
+    public String getCreator() {
+        return mCreator;
+    }
+    public void setCreator(String creator) {
+        mCreator = creator;
+    }
+
 }

@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by Johnny on 11/9/15.
  */
-public class SurveyActivity extends SingleFragmentActivity {
+public class TakeSurveyActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment getFragment() {

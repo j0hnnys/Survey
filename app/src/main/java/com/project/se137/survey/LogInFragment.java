@@ -14,6 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,7 +30,7 @@ public class LogInFragment extends Fragment {
     EditText passwordEditText;
     EditText passwordRetypeEditText;
 
-    HashMap<String, String>accounts = new HashMap<String, String>();
+    HashMap<String, String>accounts = new HashMap<>();
 
     Button logInButton;
     Button createAccountButton;
@@ -93,38 +95,41 @@ public class LogInFragment extends Fragment {
                 if ( password.length() == 0 ) { passwordEditText.setError("Password is required!");
                 } else if ( password.length() < 4 ) { passwordEditText.setError("min 4 characters"); }
 
+
                 //Checks in Hashmap, whether username is already used and creates Toasts.
                 if (username.length() >= 4 && password.length() >= 4) {
-
                     if (accounts.containsKey(username)) {
                         usernameEditText.setError("Try another");
                         Toast.makeText(v.getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
-
-                    } else if ( username == password ) {
-                        Toast.makeText(v.getContext(), "Username and Password must be different", Toast.LENGTH_SHORT).show();
-
+                    } else if (username.equals(password)) {
+                        passwordEditText.setError("Username and Password must be different");
                     } else {
-                        if ( password == passwordRetype ) {
-                            valid = true;
-                        } else {
-                            passwordRetypeEditText.setError("Does not match");
-                            passwordRetypeEditText.setTransformationMethod(null);
-                            Toast.makeText(v.getContext(), "Password and Retype Password must match", Toast.LENGTH_SHORT).show();
-                        }
+                        valid = true;
                     }
-
                 } else if (username.length() == 0 && password.length() == 0) {
                     Toast.makeText(v.getContext(), "You need to input both Username and Password", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(v.getContext(), "Both Username and Password must be longer than 3", Toast.LENGTH_SHORT).show();
                 }
 
+                if (!(password.equals(passwordRetype))) {
+                    passwordRetypeEditText.setError("Does not match");
+                    passwordRetypeEditText.setTransformationMethod(null);
+                    Toast.makeText(v.getContext(), "Password and Retype Password must match", Toast.LENGTH_SHORT).show();
+                    valid = false;
+                }
 
                 if (valid) {
                     accounts.put(username, password);
                     usernameEditText.setText(""); // clears text
                     passwordEditText.setText("");
+                    passwordRetypeEditText.setText("");
                     Toast.makeText(v.getContext(), "Account was created successfully!", Toast.LENGTH_SHORT).show();
+
+                    //PARSE IMPLEMENTATION V1.0
+                    ParseObject account = new ParseObject("User");
+                    account.put(username, password);
+                    account.saveInBackground();
                 }
 
 

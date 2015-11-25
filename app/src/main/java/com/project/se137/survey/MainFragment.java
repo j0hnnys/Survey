@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,7 @@ public class MainFragment extends Fragment {
         resultsButton = (Button) v.findViewById(R.id.results_button);
         logInButton = (Button) v.findViewById(R.id.log_in_button);
 
+        //CREATE -> CreateSurveyActivity
         createSurveyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,14 +37,16 @@ public class MainFragment extends Fragment {
             }
         });
 
+        //SURVEYS -> TakeSurveyActivity
         takeSurveyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SurveyActivity.class);
+                Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
                 startActivity(intent);
             }
         });
 
+        //RESULTS ->
         resultsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +55,7 @@ public class MainFragment extends Fragment {
             }
         });
 
+        //LOG IN -> LogInActivity
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
