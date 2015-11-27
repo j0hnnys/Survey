@@ -1,6 +1,5 @@
 package com.project.se137.survey;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public class Question {
     // The question
-    private String Question;
+    private String question;
     // Possible answers to the question
     private List<String> possibleAnswers;
     //  True -> CheckBox, False -> Radio
@@ -19,7 +18,7 @@ public class Question {
     private String mCreator;
 
     public Question(String q, List<String> a, boolean multiAnswer, String creator) {
-        Question = q;
+        question = q;
         possibleAnswers = a;
         mMultiAnswer = multiAnswer;
         mCreator = creator;
@@ -28,7 +27,7 @@ public class Question {
     //PARSE
     @Override
     public String toString() {
-        return Question + " " + mMultiAnswer + " " + possibleAnswers.toString() + " " + mCreator;
+        return question + " " + mMultiAnswer + " " + possibleAnswers.toString() + " " + mCreator;
     }
 
     //Getter Setter boolean isMultiAnswer
@@ -39,12 +38,12 @@ public class Question {
         mMultiAnswer = multiAnswer;
     }
 
-    //Getter Setter String Question
+    //Getter Setter String question
     public String getQuestion() {
-        return Question;
+        return question;
     }
     public void setQuestion(String question) {
-        Question = question;
+        this.question = question;
     }
 
     //Getter Setter List<String> PossibleAnswers
