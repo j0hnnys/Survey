@@ -1,4 +1,4 @@
-package com.project.se137.survey;
+package com.project.se137.survey.MainStartScreen;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.project.se137.survey.CreateSurveyScreen.CreateSurveyActivity;
+import com.project.se137.survey.LogInScreen.LogInActivity;
+import com.project.se137.survey.MainStartScreen.MainActivity;
+import com.project.se137.survey.R;
+import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;
 
 
 public class MainFragment extends Fragment {

@@ -1,15 +1,13 @@
-package com.project.se137.survey;
+package com.project.se137.survey.TakeSurveyScreen;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -20,10 +18,9 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.project.se137.survey.Question;
+import com.project.se137.survey.R;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Johnny on 11/9/15.
@@ -33,15 +30,21 @@ public class TakeSurveyFragment extends Fragment {
     LinearLayout surveyLayout;
     Context context;
     Question questions;
+    Button submitSelectionButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate a view using layout inflater to inflate the fragment_survey_template.xml file
-        View v = inflater.inflate(R.layout.fragment_survey_template, container, false);
+        View v = inflater.inflate(R.layout.fragment_take_survey, container, false);
         // Set surveyLayout to be LinearLayout in fragment layout file
-        surveyLayout = (LinearLayout) v.findViewById(R.id.survey_fragment_container);
+        surveyLayout = (LinearLayout) v.findViewById(R.id.take_survey_layout);
         // Set context to be getActivity. This is used repeatedly to create views in code.
         context = getActivity();
+
+        submitSelectionButton = (Button) v.findViewById(R.id.submit_selection_button);
+        // method submitSelection to be implemented!!
+        submitSelectionButton.setOnClickListener(submitSelectionListener());
+
 
         /*
          * Querying a ParseObject:
@@ -51,16 +54,20 @@ public class TakeSurveyFragment extends Fragment {
          * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
          */
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
+//        setProgressBarIndeterminateVisibility(true);
         query.findInBackground(new FindCallback<ParseObject>() {
 
             @Override
             public void done(List<ParseObject> results, ParseException e) {
+//                setProgressBarIndeterminateVisibility(false);
+
                 if (e == null) {
-                    Log.d("Query status","Query Successful");
+                    Log.d("Parse Query status","Parse Query Successful");
 
                     // Retrieving the Data from the "Questions" ParseObject
                     for (ParseObject object : results) {
 
+                        String questionID = object.getObjectId();
                         String questionText = object.getString("question");
                         Boolean multi = object.getBoolean("multi");
                         List<String> possibleAnswers = object.getList("possibleAnswers");
@@ -106,9 +113,9 @@ public class TakeSurveyFragment extends Fragment {
 //
 //        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
         //addQuestionSet(q);
-
         return v;
     }
+
 
     /**
      * Adds a question and its set of answers to the layout view
@@ -129,9 +136,9 @@ public class TakeSurveyFragment extends Fragment {
         // else create radiogroup
             view = createRadioGroup(q.getPossibleAnswers());
         }
-
         surveyLayout.addView(view);
     }
+
 
     /**
      * Given a list of answers, creates and returns a group of radio buttons
@@ -147,9 +154,9 @@ public class TakeSurveyFragment extends Fragment {
             radioButton.setText(answer);
             radioGroup.addView(radioButton);
         }
-
         return radioGroup;
     }
+
 
     /**
      * Given a list of answers, creates and returns a group of CheckBox views contained
@@ -166,7 +173,19 @@ public class TakeSurveyFragment extends Fragment {
             checkbox.setText(answer);
             linearLayout.addView(checkbox);
         }
-
         return linearLayout;
     }
+
+
+    // To be implemented!!
+    private View.OnClickListener submitSelectionListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Submit:", "Selection Submit Method Called");
+            }
+        };
+    }
+
+
 }

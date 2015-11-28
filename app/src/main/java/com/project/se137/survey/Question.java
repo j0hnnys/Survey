@@ -8,27 +8,38 @@ import java.util.List;
  * Answers that allow only one choice will be displayed as Radio buttons
  */
 public class Question {
+    // Question ID
+    private String mQuestionID;
     // The question
-    private String question;
+    private String mQuestion;
     // Possible answers to the question
-    private List<String> possibleAnswers;
+    private List<String> mPossibleAnswers;
     //  True -> CheckBox, False -> Radio
     private boolean mMultiAnswer;
     // Creator of the Survey Attribute - for UserManagement
     private String mCreator;
 
-    public Question(String q, List<String> a, boolean multiAnswer, String creator) {
-        question = q;
-        possibleAnswers = a;
+
+    public Question(String question, List<String> answers, boolean multiAnswer, String creator) {
+        mQuestion = question;
+        mPossibleAnswers = answers;
         mMultiAnswer = multiAnswer;
         mCreator = creator;
     }
 
-    //PARSE
+
     @Override
     public String toString() {
-        return question + " " + mMultiAnswer + " " + possibleAnswers.toString() + " " + mCreator;
+        return mQuestion + " " + mMultiAnswer + " " + mPossibleAnswers.toString() + " " + mCreator;
     }
+
+    // Getter Setter QuestionID
+//    public String getQuestionID() {
+//        return mQuestionID;
+//    }
+//    public void setQuestionID(String questionID) {
+//        mQuestionID = questionID;
+//    }
 
     //Getter Setter boolean isMultiAnswer
     public boolean isMultiAnswer() {
@@ -38,20 +49,20 @@ public class Question {
         mMultiAnswer = multiAnswer;
     }
 
-    //Getter Setter String question
+    //Getter Setter String Question
     public String getQuestion() {
-        return question;
+        return mQuestion;
     }
     public void setQuestion(String question) {
-        this.question = question;
+        mQuestion = question;
     }
 
     //Getter Setter List<String> PossibleAnswers
     public List<String> getPossibleAnswers() {
-        return possibleAnswers;
+        return mPossibleAnswers;
     }
     public void setPossibleAnswers(List<String> possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
+        mPossibleAnswers = possibleAnswers;
     }
 
     //Getter and Setter String Creator

@@ -8,4 +8,6 @@
     <string name="facebook_app_id">1489526114686435</string>
     <string name="share">Share</string>
 
+    <string name="action_new">New Note</string>
+    <string name="action_refresh">Refresh</string>
 </resources>

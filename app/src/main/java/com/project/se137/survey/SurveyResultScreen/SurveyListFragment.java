@@ -1,4 +1,4 @@
-package com.project.se137.survey;
+package com.project.se137.survey.SurveyResultScreen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.project.se137.survey.Question;
 
 import java.util.ArrayList;
 import java.util.List;

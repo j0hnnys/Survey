@@ -1,8 +1,11 @@
-package com.project.se137.survey;
+package com.project.se137.survey.MainStartScreen;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.project.se137.survey.CreateSurveyScreen.CreateSurveyActivity;
+import com.project.se137.survey.SingleFragmentActivity;
 
 /**
  * Created by calvin on 11/23/2015.

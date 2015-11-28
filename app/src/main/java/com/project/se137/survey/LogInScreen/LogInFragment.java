@@ -1,4 +1,4 @@
-package com.project.se137.survey;
+package com.project.se137.survey.LogInScreen;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
+import com.project.se137.survey.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
