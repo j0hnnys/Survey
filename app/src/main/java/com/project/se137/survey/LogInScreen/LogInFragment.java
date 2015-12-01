@@ -129,7 +129,8 @@ public class LogInFragment extends Fragment {
 
                     //PARSE IMPLEMENTATION V1.0
                     ParseObject account = new ParseObject("User");
-                    account.put(username, password);
+                    account.put("username", username);
+                    account.put("password", password);
                     account.saveInBackground();
                 }
 

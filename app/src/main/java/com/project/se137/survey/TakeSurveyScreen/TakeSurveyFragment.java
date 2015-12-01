@@ -67,7 +67,7 @@ public class TakeSurveyFragment extends Fragment {
                     // Retrieving the Data from the "Questions" ParseObject
                     for (ParseObject object : results) {
 
-                        String questionID = object.getObjectId();
+                        //String questionID = object.getObjectId();
                         String questionText = object.getString("question");
                         Boolean multi = object.getBoolean("multi");
                         List<String> possibleAnswers = object.getList("possibleAnswers");
