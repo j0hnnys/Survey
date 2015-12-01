@@ -33,7 +33,6 @@ import java.util.List;
  */
 public class SurveyListFragment extends Fragment {
 
-    private List<Question> surveys;
     private RecyclerView surveyRecyclerView;
     private SurveyAdapter surveyAdapter;
 
@@ -50,13 +49,54 @@ public class SurveyListFragment extends Fragment {
         // RecyclerView requires a LayoutManager to work. IT WILL CRASH IF YOU FORGET ONE.
         surveyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        surveyAdapter = new SurveyAdapter();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Survey");
+
+        List<ParseObject> objects;
+        try {
+            objects = query.find();
+            surveyAdapter = new SurveyAdapter(objects);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         surveyRecyclerView.setAdapter(surveyAdapter);
 
         return view;
     }
 
+    private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView surveyNameTextView;
+
+        public SurveyHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            // Initialize name of survey inside SurveyHolder
+            surveyNameTextView = (TextView) itemView.findViewById(R.id.list_survey_name_text_view);
+        }
+
+        // Bind survey to the holder and set name accordingly
+        public void bindSurvey(Survey s) {
+            surveyNameTextView.setText(s.getName());
+        }
+
+        // Initializes TakeSurveyActivity when user selects a survey to take
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameTextView.getText().toString());
+            startActivity(intent);
+        }
+    }
+
     private class SurveyAdapter extends RecyclerView.Adapter<SurveyHolder> {
+
+        private List<ParseObject> surveyObjects;
+
+        public SurveyAdapter(List<ParseObject> sObjects) {
+            surveyObjects = sObjects;
+        }
 
         @Override
         public SurveyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -72,58 +112,22 @@ public class SurveyListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(SurveyHolder holder, int position) {
-            final SurveyHolder h = holder;
-            final int p = position;
-
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("Survey");
-
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> objects, ParseException e) {
-                    Log.d("ALERT:", "Connected to parse!");
-                    if (e == null) {
-                        for (ParseObject object: objects) {
-                            if (object.getNumber("surveyNumber") == p) {
-                                Survey s = new Survey(object.getString("surveyName"));
-                                h.bindSurvey(s);
-                            }
-                        }
-                    }
-                }
-            });
+            ParseObject parseObject = surveyObjects.get(position);
+            String surveyName = parseObject.getString("surveyName");
+            Survey survey = new Survey(surveyName);
+            holder.bindSurvey(survey);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return surveyObjects.size();
         }
     }
 
-    private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        private Survey survey;
-        private TextView surveyNameTextView;
-
-        public SurveyHolder(View itemView) {
-            super(itemView);
-            // Initialize name of survey inside SurveyHolder
-            surveyNameTextView = (TextView) itemView.findViewById(R.id.survey_name_text_view);
-        }
-
-        // Bind survey to the holder and set name accordingly
-        public void bindSurvey(Survey s) {
-            survey = s;
-            surveyNameTextView.setText(survey.getName());
-        }
-
-        // Initializes TakeSurveyActivity when user selects a survey to take
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            intent.putExtra(TakeSurveyFragment.SURVEY_ID, survey.getName());
-            startActivity(intent);
-        }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
-
 
 }
