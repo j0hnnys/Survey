@@ -1,5 +1,6 @@
 package com.project.se137.survey.CreateSurveyScreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,16 +12,21 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
+import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
+import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Johnny on 11/16/15.
  */
 public class CreateSurveyFragment extends Fragment {
 
+    EditText surveyEditText;
     EditText questionEditText;
     EditText answerEditText1;
     EditText answerEditText2;
@@ -39,6 +45,7 @@ public class CreateSurveyFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_create_survey, container, false);
 
         // Declare initial variables to  the views in the layout file
+        surveyEditText = (EditText) v.findViewById(R.id.survey_name_edit_text);
         questionEditText = (EditText) v.findViewById(R.id.question_edit_text);
         answerEditText1 = (EditText) v.findViewById(R.id.answer1_edit_text);
         answerEditText2 = (EditText) v.findViewById(R.id.answer2_edit_text);
@@ -51,6 +58,7 @@ public class CreateSurveyFragment extends Fragment {
         survey = new ArrayList<>();
 
         addButton.setOnClickListener(addToSurveyListener());
+        completeButton.setOnClickListener(completeSurveyListener());
 
         return v;
     }
@@ -80,6 +88,30 @@ public class CreateSurveyFragment extends Fragment {
                 survey.add(question);
 
                 Toast.makeText(v.getContext(), "Question added to survey!", Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
+    private View.OnClickListener completeSurveyListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retrieve the last question
+                addToSurveyListener().onClick(v);
+
+                // Put all questions to the db
+                for(Question q : survey){
+                    ParseObject newQuestion = new ParseObject("Questions");
+                    newQuestion.put("surveyName", surveyEditText.getText().toString());
+                    newQuestion.put("question", q.getQuestion());
+                    newQuestion.put("multi", q.isMultiAnswer());
+                    newQuestion.addAll("possibleAnswers", q.getPossibleAnswers() );
+                    newQuestion.saveInBackground();
+                }
+
+                // Transition back to the main menu
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
         };
     }
