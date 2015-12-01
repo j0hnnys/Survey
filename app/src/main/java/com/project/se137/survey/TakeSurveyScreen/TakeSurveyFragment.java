@@ -21,6 +21,7 @@ import com.parse.ParseQuery;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Johnny on 11/9/15.
@@ -29,8 +30,9 @@ public class TakeSurveyFragment extends Fragment {
 
     LinearLayout surveyLayout;
     Context context;
-    Question questions;
     Button submitSelectionButton;
+
+    public static final String SURVEY_ID = "SURVEY";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,14 +47,13 @@ public class TakeSurveyFragment extends Fragment {
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
 
-
         /*
          * Querying a ParseObject:
-         * 0. Creating a query to Parse.
-         * 1. Retrieves the data from the Question ParseObject.
-         * 2. Using that data, we create an QuestionObject called survey.
-         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
-         */
+//         * 0. Creating a query to Parse.
+//         * 1. Retrieves the data from the Question ParseObject.
+//         * 2. Using that data, we create an QuestionObject called survey.
+//         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
+//         */
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
 //        setProgressBarIndeterminateVisibility(true);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -107,12 +108,12 @@ public class TakeSurveyFragment extends Fragment {
 //        });
 
         // TEST CODE BELOW
-//        ArrayList<String> answers = new ArrayList<>();
-//        answers.add("SE");
-//        answers.add("CMPE");
-//
-//        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
-        //addQuestionSet(q);
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add("SE");
+        answers.add("CMPE");
+
+        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
+        addQuestionSet(q);
         return v;
     }
 

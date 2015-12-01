@@ -20,6 +20,7 @@ import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Created by Johnny on 11/16/15.
@@ -99,13 +100,25 @@ public class CreateSurveyFragment extends Fragment {
                 // Retrieve the last question
                 addToSurveyListener().onClick(v);
 
+                String surveyName = surveyEditText.getText().toString();
+
+                Random rand = new Random(); // random int for the id at the moment
+                int surveyID = rand.nextInt();
+
+                ParseObject newSurvey = new ParseObject("Survey");
+                newSurvey.put("surveyName", surveyName);
+                newSurvey.put("surveyNumber", surveyID);
+                newSurvey.put("creator", "Admin"); // All users are admin at the moment
+                newSurvey.saveInBackground();
+
                 // Put all questions to the db
                 for(Question q : survey){
                     ParseObject newQuestion = new ParseObject("Questions");
-                    newQuestion.put("surveyName", surveyEditText.getText().toString());
+                    newQuestion.put("surveyName", surveyName);
                     newQuestion.put("question", q.getQuestion());
                     newQuestion.put("multi", q.isMultiAnswer());
-                    newQuestion.addAll("possibleAnswers", q.getPossibleAnswers() );
+                    newQuestion.addAll("possibleAnswers", q.getPossibleAnswers());
+                    newQuestion.put("creator", "Admin"); // All users are admin at the moment
                     newQuestion.saveInBackground();
                 }
 
