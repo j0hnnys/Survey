@@ -109,6 +109,7 @@ public class CreateSurveyFragment extends Fragment {
                 newSurvey.put("surveyName", surveyName);
                 newSurvey.put("surveyNumber", surveyID);
                 newSurvey.put("creator", "Admin"); // All users are admin at the moment
+                newSurvey.saveInBackground();
 
                 // Put all questions to the db
                 for(Question q : survey){
