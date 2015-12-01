@@ -21,6 +21,7 @@ import com.parse.ParseQuery;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Johnny on 11/9/15.
@@ -31,6 +32,8 @@ public class TakeSurveyFragment extends Fragment {
     Context context;
     Question questions;
     Button submitSelectionButton;
+
+    public static final String SURVEY_ID = "SURVEY";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +48,6 @@ public class TakeSurveyFragment extends Fragment {
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
 
-
         /*
          * Querying a ParseObject:
          * 0. Creating a query to Parse.
@@ -53,35 +55,35 @@ public class TakeSurveyFragment extends Fragment {
          * 2. Using that data, we create an QuestionObject called survey.
          * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
          */
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
-//        setProgressBarIndeterminateVisibility(true);
-        query.findInBackground(new FindCallback<ParseObject>() {
-
-            @Override
-            public void done(List<ParseObject> results, ParseException e) {
-//                setProgressBarIndeterminateVisibility(false);
-
-                if (e == null) {
-                    Log.d("Parse Query status","Parse Query Successful");
-
-                    // Retrieving the Data from the "Questions" ParseObject
-                    for (ParseObject object : results) {
-
-                        String questionID = object.getObjectId();
-                        String questionText = object.getString("question");
-                        Boolean multi = object.getBoolean("multi");
-                        List<String> possibleAnswers = object.getList("possibleAnswers");
-                        String creator = object.getString("creator");
-
-                        // Creates QuestionObject "survey" and calls addQuestionSet()
-                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
-                        addQuestionSet(survey);
-                    }
-                } else {
-                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
-                }
-            }
-        });
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
+////        setProgressBarIndeterminateVisibility(true);
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//
+//            @Override
+//            public void done(List<ParseObject> results, ParseException e) {
+////                setProgressBarIndeterminateVisibility(false);
+//
+//                if (e == null) {
+//                    Log.d("Parse Query status","Parse Query Successful");
+//
+//                    // Retrieving the Data from the "Questions" ParseObject
+//                    for (ParseObject object : results) {
+//
+//                        String questionID = object.getObjectId();
+//                        String questionText = object.getString("question");
+//                        Boolean multi = object.getBoolean("multi");
+//                        List<String> possibleAnswers = object.getList("possibleAnswers");
+//                        String creator = object.getString("creator");
+//
+//                        // Creates QuestionObject "survey" and calls addQuestionSet()
+//                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
+//                        addQuestionSet(survey);
+//                    }
+//                } else {
+//                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+//                }
+//            }
+//        });
 
 
 //        System.out.println("Begin Querying Server...");
@@ -107,12 +109,12 @@ public class TakeSurveyFragment extends Fragment {
 //        });
 
         // TEST CODE BELOW
-//        ArrayList<String> answers = new ArrayList<>();
-//        answers.add("SE");
-//        answers.add("CMPE");
-//
-//        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
-        //addQuestionSet(q);
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add("SE");
+        answers.add("CMPE");
+
+        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
+        addQuestionSet(q);
         return v;
     }
 
