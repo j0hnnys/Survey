@@ -1,5 +1,6 @@
 package com.project.se137.survey.LogInScreen;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,11 +15,16 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by danielnguyen on 11/23/15.
@@ -69,10 +75,42 @@ public class LogInFragment extends Fragment {
 
         //createAccountButton adds credentials to ArrayList
         createAccountButton.setOnClickListener(createAccountListener());
+        logInButton.setOnClickListener(logInListener());
+
 
         return v;
     }
 
+
+    private View.OnClickListener logInListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                final String password = passwordEditText.getText().toString();
+
+                ParseQuery<ParseObject> logIn = ParseQuery.getQuery("User");
+                logIn.whereEqualTo("username", username);
+                logIn.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e) {
+                        String rightPassword = objects.get(0).getString("password");
+
+                        if (password.equals(rightPassword)) {
+                            //Toast.makeText(v.getContext(), "Login was successfull!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+
+                        } else {
+                            Log.d("LogIn", "LogIn failed");
+                            //Toast.makeText(v.getContext(), "Login failed!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+            }
+        };
+    }
 
 
     private View.OnClickListener createAccountListener() {

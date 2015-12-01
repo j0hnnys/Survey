@@ -84,28 +84,7 @@ public class TakeSurveyFragment extends Fragment {
             }
         });
 
-
-//        System.out.println("Begin Querying Server...");
-//        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
-//        query.whereEqualTo("surveyName", "TestSurvey");
-//        query.findInBackground(new FindCallback<ParseObject>() {
-//            public void done(List<ParseObject> results, ParseException e) {
-//                if (e == null) {
-//                    System.out.println("Query Successfull");
-//                    for (ParseObject object: results) {
-//                        String questionText = object.getString("question");
-//                        Boolean multi = object.getBoolean("multi");
-//                        List<String> possibleAnswers = object.getList("possibleAnswers");
-//                        System.out.println(questionText + " " + multi + " "  +possibleAnswers.toString());
-//                        Question question = new Question(questionText, multi, possibleAnswers);
-//                        questions.add(question);
-//                    }
-//                }
-//                else {
-//                    System.out.println("Query Failed");
-//                }
-//            }
-//        });
+        
 
         // TEST CODE BELOW
         ArrayList<String> answers = new ArrayList<>();
