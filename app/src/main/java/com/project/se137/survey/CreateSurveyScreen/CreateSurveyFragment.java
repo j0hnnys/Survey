@@ -22,7 +22,10 @@ import java.util.ArrayList;
 public class CreateSurveyFragment extends Fragment {
 
     EditText questionEditText;
-    EditText answerEditText;
+    EditText answerEditText1;
+    EditText answerEditText2;
+    EditText answerEditText3;
+    EditText answerEditText4;
     CheckBox isMultiCheckBox;
     Button addButton;
     Button completeButton;
@@ -37,9 +40,15 @@ public class CreateSurveyFragment extends Fragment {
 
         // Declare initial variables to  the views in the layout file
         questionEditText = (EditText) v.findViewById(R.id.question_edit_text);
+        answerEditText1 = (EditText) v.findViewById(R.id.answer1_edit_text);
+        answerEditText2 = (EditText) v.findViewById(R.id.answer2_edit_text);
+        answerEditText3 = (EditText) v.findViewById(R.id.answer3_edit_text);
+        answerEditText4 = (EditText) v.findViewById(R.id.answer4_edit_text);
         isMultiCheckBox = (CheckBox) v.findViewById(R.id.multi_question_checkbox);
         addButton = (Button) v.findViewById(R.id.add_button);
         completeButton = (Button) v.findViewById(R.id.complete_button);
+
+        survey = new ArrayList<>();
 
         addButton.setOnClickListener(addToSurveyListener());
 
@@ -82,32 +91,28 @@ public class CreateSurveyFragment extends Fragment {
      */
     private ArrayList<String> getAnswers(View v) {
         ArrayList<String> answers = new ArrayList<>();
-        String answer = "";
 
         // Checks if field isn't empty, if it isn't then add the answer
         // to the ArrayList that is to be returned and clear the edittext field
-        answerEditText = (EditText) v.findViewById(R.id.answer1_edit_text);
-        if (!answerEditText.getText().toString().isEmpty()) {
-            answers.add(answerEditText.getText().toString());
-            answerEditText.setText("");
+
+        if (!answerEditText1.getText().toString().isEmpty()) {
+            answers.add(answerEditText1.getText().toString());
+            answerEditText1.setText("");
         }
 
-        answerEditText = (EditText) v.findViewById(R.id.answer2_edit_text);
-        if (!answerEditText.getText().toString().isEmpty()) {
-            answers.add(answerEditText.getText().toString());
-            answerEditText.setText("");
+        if (!answerEditText2.getText().toString().isEmpty()) {
+            answers.add(answerEditText2.getText().toString());
+            answerEditText2.setText("");
         }
 
-        answerEditText = (EditText) v.findViewById(R.id.answer3_edit_text);
-        if (!answerEditText.getText().toString().isEmpty()) {
-            answers.add(answerEditText.getText().toString());
-            answerEditText.setText("");
+        if (!answerEditText3.getText().toString().isEmpty()) {
+            answers.add(answerEditText3.getText().toString());
+            answerEditText3.setText("");
         }
 
-        answerEditText = (EditText) v.findViewById(R.id.answer4_edit_text);
-        if (!answerEditText.getText().toString().isEmpty()) {
-            answers.add(answerEditText.getText().toString());
-            answerEditText.setText("");
+        if (!answerEditText4.getText().toString().isEmpty()) {
+            answers.add(answerEditText4.getText().toString());
+            answerEditText4.setText("");
         }
 
         return answers;
