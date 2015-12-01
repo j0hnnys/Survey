@@ -23,25 +23,6 @@ public class AppInitializer extends Application {
         Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
         //DEBUG
         Log.d("TAG", "Parse enabled");
-
-//        ParseObject account = new ParseObject("User");
-//        account.put("username", "password");
-//        account.saveInBackground();
-
-
-
-        //Adds a test question on startup to Parse DB
-//        ParseObject newQuestion = new ParseObject("Questions");
-//        newQuestion.put("surveyName", "TestSurvey");
-//        newQuestion.put("question","Which classes are you taking this semester?");
-//        newQuestion.put("multi", true);
-//        newQuestion.addAll("possibleAnswers", Arrays.asList("CMPE137","CMPE172","CMPE195A","CMPE19B") );
-//        newQuestion.saveInBackground();
-
-//        ParseObject testObject = new ParseObject("TestObject");
-//        testObject.put("foo", "bar");
-//        testObject.saveInBackground();
-
         FacebookSdk.sdkInitialize(getApplicationContext());
     }
 }

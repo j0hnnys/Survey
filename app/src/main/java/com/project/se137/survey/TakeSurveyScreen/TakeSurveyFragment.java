@@ -30,7 +30,6 @@ public class TakeSurveyFragment extends Fragment {
 
     LinearLayout surveyLayout;
     Context context;
-    Question questions;
     Button submitSelectionButton;
 
     public static final String SURVEY_ID = "SURVEY";
@@ -50,40 +49,40 @@ public class TakeSurveyFragment extends Fragment {
 
         /*
          * Querying a ParseObject:
-         * 0. Creating a query to Parse.
-         * 1. Retrieves the data from the Question ParseObject.
-         * 2. Using that data, we create an QuestionObject called survey.
-         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
-         */
-//        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
-////        setProgressBarIndeterminateVisibility(true);
-//        query.findInBackground(new FindCallback<ParseObject>() {
-//
-//            @Override
-//            public void done(List<ParseObject> results, ParseException e) {
-////                setProgressBarIndeterminateVisibility(false);
-//
-//                if (e == null) {
-//                    Log.d("Parse Query status","Parse Query Successful");
-//
-//                    // Retrieving the Data from the "Questions" ParseObject
-//                    for (ParseObject object : results) {
-//
-//                        String questionID = object.getObjectId();
-//                        String questionText = object.getString("question");
-//                        Boolean multi = object.getBoolean("multi");
-//                        List<String> possibleAnswers = object.getList("possibleAnswers");
-//                        String creator = object.getString("creator");
-//
-//                        // Creates QuestionObject "survey" and calls addQuestionSet()
-//                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
-//                        addQuestionSet(survey);
-//                    }
-//                } else {
-//                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
-//                }
-//            }
-//        });
+//         * 0. Creating a query to Parse.
+//         * 1. Retrieves the data from the Question ParseObject.
+//         * 2. Using that data, we create an QuestionObject called survey.
+//         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
+//         */
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
+//        setProgressBarIndeterminateVisibility(true);
+        query.findInBackground(new FindCallback<ParseObject>() {
+
+            @Override
+            public void done(List<ParseObject> results, ParseException e) {
+//                setProgressBarIndeterminateVisibility(false);
+
+                if (e == null) {
+                    Log.d("Parse Query status","Parse Query Successful");
+
+                    // Retrieving the Data from the "Questions" ParseObject
+                    for (ParseObject object : results) {
+
+                        String questionID = object.getObjectId();
+                        String questionText = object.getString("question");
+                        Boolean multi = object.getBoolean("multi");
+                        List<String> possibleAnswers = object.getList("possibleAnswers");
+                        String creator = object.getString("creator");
+
+                        // Creates QuestionObject "survey" and calls addQuestionSet()
+                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
+                        addQuestionSet(survey);
+                    }
+                } else {
+                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                }
+            }
+        });
 
 
 //        System.out.println("Begin Querying Server...");
