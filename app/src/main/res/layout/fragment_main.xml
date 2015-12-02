@@ -3,46 +3,92 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_gravity="top"
+    style="@style/AppTheme"
+    android:background="@color/com_facebook_button_login_silver_background_color_pressed">
 
-    <Button
-        android:id="@+id/create_suvey_button"
+    <TextView
+        android:text="Choose an option:"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Create"/>
+        style="@style/TextViewTheme"/>
 
-    <android.widget.Space
-        android:layout_width="1dp"
-        android:layout_height="10dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/take_survey_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Surveys"/>
+        <Button
+            android:id="@+id/take_survey_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            style="@style/ButtonTheme"
+            android:text="Take a survey"/>
 
-    <android.widget.Space
-        android:layout_width="1dp"
-        android:layout_height="10dp"/>
+        <android.widget.Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"/>
 
-    <Button
-        android:id="@+id/results_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Result"/>
+        <Button
+            android:id="@+id/create_survey_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            style="@style/ButtonTheme"
+            android:text="Create a survey"/>
 
-    <android.widget.Space
-        android:layout_width="1dp"
-        android:layout_height="10dp"/>
+
+        <android.widget.Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"/>
+
+        <Button
+            android:id="@+id/results_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            style="@style/ButtonTheme"
+            android:text="Survey results"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:src="@drawable/survey_take"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/survey_create"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/survey_results"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/log_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Log In"/>
+        android:textSize="25sp"
+        android:text="Log In"
+        style="@style/ButtonTheme"/>
 
 </LinearLayout>

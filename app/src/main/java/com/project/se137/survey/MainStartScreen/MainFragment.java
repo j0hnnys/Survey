@@ -30,7 +30,7 @@ public class MainFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         // initialize buttons
-        createSurveyButton = (Button) v.findViewById(R.id.create_suvey_button);
+        createSurveyButton = (Button) v.findViewById(R.id.create_survey_button);
         takeSurveyButton = (Button) v.findViewById(R.id.take_survey_button);
         resultsButton = (Button) v.findViewById(R.id.results_button);
         logInButton = (Button) v.findViewById(R.id.log_in_button);
