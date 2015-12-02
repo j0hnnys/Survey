@@ -16,9 +16,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.project.se137.survey.GlobalVariable;
 import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.R;
 
@@ -85,32 +87,59 @@ public class LogInFragment extends Fragment {
     private View.OnClickListener logInListener() {
         return new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String username = usernameEditText.getText().toString();
+            public void onClick(final View v) {
+                final String username = usernameEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
+
+                final GlobalVariable loggedInUser = new GlobalVariable();
 
                 ParseQuery<ParseObject> logIn = ParseQuery.getQuery("User");
                 logIn.whereEqualTo("username", username);
-                logIn.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> objects, ParseException e) {
-                        String rightPassword = objects.get(0).getString("password");
 
-                        if (password.equals(rightPassword)) {
-                            //Toast.makeText(v.getContext(), "Login was successfull!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
+                // Get only one
+                logIn.getFirstInBackground(new GetCallback<ParseObject>() {
+
+                    public void done(ParseObject objects, ParseException e) {
+
+                        if (objects == null) {
+                            Log.d("Parse", "The logIn request failed.");
+                            Toast.makeText(v.getContext(), "Login failed! Username not found", Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Log.d("LogIn", "LogIn failed");
-                            //Toast.makeText(v.getContext(), "Login failed!", Toast.LENGTH_SHORT).show();
-                        }
+                            Log.d("Parse", "Retrieved the object.");
 
+                            try {
+
+                                String rightPassword = objects.getString("password");
+
+                                if (password.equals(rightPassword)) {
+
+                                    Toast.makeText(v.getContext(), "Login was successfull!", Toast.LENGTH_SHORT).show();
+
+                                    // Saving the username to a global variable
+                                    loggedInUser.setLoggedInUser(username);
+
+                                    //Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    //startActivity(intent);
+
+                                } else {
+                                    Log.d("LogIn", "LogIn failed");
+                                    Toast.makeText(v.getContext(), "Login failed! Wrong Password", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch (ArrayIndexOutOfBoundsException arrayEx) {
+
+                                Log.d("Exception at Parse: ", e.getMessage());
+
+                            }
+                        }
                     }
                 });
             }
         };
     }
+
+
 
 
     private View.OnClickListener createAccountListener() {
@@ -121,6 +150,7 @@ public class LogInFragment extends Fragment {
                 String password;
                 String passwordRetype;
                 boolean valid = false;
+                boolean userFoundInParse = false;
 
                 username = usernameEditText.getText().toString();
                 password = passwordEditText.getText().toString();
@@ -137,7 +167,24 @@ public class LogInFragment extends Fragment {
 
                 //Checks in Hashmap, whether username is already used and creates Toasts.
                 if (username.length() >= 4 && password.length() >= 4) {
+
+
+                    try{
+                        ParseQuery<ParseObject> logIn = ParseQuery.getQuery("User");
+                        logIn.whereEqualTo("username", username);
+
+                    } catch(ArrayIndexOutOfBoundsException e){
+                        Log.d("Exception at Parse: ", e.getMessage());
+                    }
+
                     if (accounts.containsKey(username)) {
+
+
+                        ParseQuery<ParseObject> logIn = ParseQuery.getQuery("User");
+                        logIn.whereEqualTo("username", username);
+
+
+
                         usernameEditText.setError("Try another");
                         Toast.makeText(v.getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
                     } else if (username.equals(password)) {
@@ -159,13 +206,14 @@ public class LogInFragment extends Fragment {
                 }
 
                 if (valid) {
-                    accounts.put(username, password);
+
                     usernameEditText.setText(""); // clears text
                     passwordEditText.setText("");
                     passwordRetypeEditText.setText("");
+
                     Toast.makeText(v.getContext(), "Account was created successfully!", Toast.LENGTH_SHORT).show();
 
-                    //PARSE IMPLEMENTATION V1.0
+                    //PARSE IMPLEMENTATION
                     ParseObject account = new ParseObject("User");
                     account.put("username", username);
                     account.put("password", password);

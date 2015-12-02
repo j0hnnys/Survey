@@ -84,7 +84,7 @@ public class TakeSurveyFragment extends Fragment {
             }
         });
 
-        
+
 
         // TEST CODE BELOW
         ArrayList<String> answers = new ArrayList<>();
