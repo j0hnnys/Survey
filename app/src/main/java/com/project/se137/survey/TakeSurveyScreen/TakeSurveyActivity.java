@@ -44,7 +44,6 @@ public class TakeSurveyActivity extends SingleFragmentActivity {
             fragment = getFragment();
             // add survey name (located inside of bundle) and add to fragment
             fragment.setArguments(args);
-            Toast.makeText(getApplicationContext(), "passed survey name!", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().add(R.id.survey_fragment_container, fragment).commit();
         }
 

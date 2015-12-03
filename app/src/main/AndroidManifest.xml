@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateSurveyScreen.CreateSurveyActivity"/>
-        <activity android:name=".TakeSurveyScreen.TakeSurveyActivity"/>
+        <activity android:name=".TakeSurveyScreen.TakeSurveyActivity"
+                android:theme="@style/TextViewTheme"/>
         <activity android:name=".LogInScreen.LogInActivity"/>
         <activity android:name=".SurveyResultScreen.SurveyListActivity"/>
         <activity

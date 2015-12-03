@@ -1,6 +1,7 @@
 package com.project.se137.survey.TakeSurveyScreen;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -84,7 +85,6 @@ public class TakeSurveyFragment extends Fragment {
         return v;
     }
 
-
     /**
      * Adds a question and its set of answers to the layout view
      * @param q the Question class that contains the QA information
@@ -120,6 +120,7 @@ public class TakeSurveyFragment extends Fragment {
         for (String answer : answers) {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setText(answer);
+            radioButton.setTextColor(Color.BLACK);
             radioGroup.addView(radioButton);
         }
         return radioGroup;
@@ -139,6 +140,7 @@ public class TakeSurveyFragment extends Fragment {
         for (String answer : answers) {
             CheckBox checkbox = new CheckBox(context);
             checkbox.setText(answer);
+            checkbox.setTextColor(Color.BLACK);
             linearLayout.addView(checkbox);
         }
         return linearLayout;
