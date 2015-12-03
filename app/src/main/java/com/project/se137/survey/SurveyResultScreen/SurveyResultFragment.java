@@ -21,8 +21,6 @@ import com.project.se137.survey.SurveyListScreen.SurveyListActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-
 /**
  * Created by Johnny on 12/2/15.
  */
@@ -65,7 +63,6 @@ public class SurveyResultFragment extends Fragment {
         return v;
     }
 
-<<<<<<< HEAD
     private ArrayList<Question> generateQuestionsArray(List<ParseObject> objects) {
 
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -143,20 +140,5 @@ public class SurveyResultFragment extends Fragment {
         }
 
         return subLayout;
-=======
-    private ArrayList<Integer> getPercents(ArrayList<Integer> results){
-        ArrayList<Integer> percents = new ArrayList<>();
-
-        Integer totalResults = 0;
-        for(int result : results){
-            totalResults += result;
-        }
-
-        for(int result : results){
-            percents.add((result / totalResults) * 100);
-        }
-
-        return percents;
->>>>>>> origin/master
     }
 }
