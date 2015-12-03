@@ -49,8 +49,7 @@ public class TakeSurveyFragment extends Fragment {
         submitSelectionButton = (Button) v.findViewById(R.id.submit_selection_button);
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
-
-<<<<<<< HEAD
+        
         answerViews = new ArrayList<>();
 
         /*
@@ -60,12 +59,10 @@ public class TakeSurveyFragment extends Fragment {
 //         * 2. Using that data, we create an QuestionObject called survey.
 //         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
 //         */
-=======
         // Get survey name to that was chosen from SurveyListFragment
         Bundle args = getArguments();
         String surveyName = args.getString(SURVEY_ID);
 
->>>>>>> 507015f7bbadf6fa63ea1ea89ff5562200e6b585
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
         // Filter query to find questions related to survey
         query.whereEqualTo("surveyName", surveyName);
@@ -133,12 +130,8 @@ public class TakeSurveyFragment extends Fragment {
         // Loop through answer list and add a radio button for each one.
         for (int i = 0; i < answers.size(); i++) {
             RadioButton radioButton = new RadioButton(context);
-<<<<<<< HEAD
             radioButton.setText(answers.get(i));
-=======
-            radioButton.setText(answer);
             radioButton.setTextColor(Color.BLACK);
->>>>>>> origin/master
             radioGroup.addView(radioButton);
 
             // 1 = question, 2 = answer#
@@ -162,12 +155,8 @@ public class TakeSurveyFragment extends Fragment {
         // Loop through answer list and add a CheckBox to linearLayout for each one.
         for (int i = 0; i < answers.size(); i++) {
             CheckBox checkbox = new CheckBox(context);
-<<<<<<< HEAD
             checkbox.setText(answers.get(i));
-=======
-            checkbox.setText(answer);
             checkbox.setTextColor(Color.BLACK);
->>>>>>> origin/master
             linearLayout.addView(checkbox);
 
             // 1 = question, 2 = answer#
