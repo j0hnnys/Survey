@@ -80,7 +80,7 @@ public class SurveyListFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
-            intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameButton.getText().toString());
+            intent.putExtra(SurveyListActivity.SURVEY_ID, surveyNameButton.getText().toString());
             startActivity(intent);
         }
     }
