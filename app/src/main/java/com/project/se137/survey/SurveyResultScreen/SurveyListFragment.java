@@ -84,7 +84,7 @@ public class SurveyListFragment extends Fragment {
         // Initializes TakeSurveyActivity when user selects a survey to take
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
             intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameTextView.getText().toString());
             startActivity(intent);
         }

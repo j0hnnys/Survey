@@ -31,15 +31,21 @@ public class TakeSurveyActivity extends SingleFragmentActivity {
         // Create fragment and set it to fragment located in fragment_survey_template.xml
         Fragment fragment = fm.findFragmentById(R.id.survey_fragment_container);
 
+        // Grab name of survey selected and save to bundle.
+        Intent i = getIntent();
+        String surveyName = i.getStringExtra(TakeSurveyFragment.SURVEY_ID);
+        Bundle args = new Bundle();
+        args.putString(TakeSurveyFragment.SURVEY_ID, surveyName);
+
         // Error handling here; sometimes the target fragment might not exist so it
         // is always good to check that.
         if (fragment == null) {
             fragment = getFragment();
+            // add survey name (located inside of bundle) and add to fragment
+            fragment.setArguments(args);
             fm.beginTransaction().add(R.id.survey_fragment_container, fragment).commit();
         }
 
-        Intent i = getIntent();
-        String surveyName = i.getStringExtra(TakeSurveyFragment.SURVEY_ID);
 
     }
 }

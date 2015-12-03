@@ -47,21 +47,18 @@ public class TakeSurveyFragment extends Fragment {
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
 
-        /*
-         * Querying a ParseObject:
-//         * 0. Creating a query to Parse.
-//         * 1. Retrieves the data from the Question ParseObject.
-//         * 2. Using that data, we create an QuestionObject called survey.
-//         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
-//         */
+        // Get survey name to that was chosen from SurveyListFragment
+        Bundle args = getArguments();
+        String surveyName = args.getString(SURVEY_ID);
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
-//        setProgressBarIndeterminateVisibility(true);
+        // Filter query to find questions related to survey
+        query.whereEqualTo("surveyName", surveyName);
+
         query.findInBackground(new FindCallback<ParseObject>() {
 
             @Override
             public void done(List<ParseObject> results, ParseException e) {
-//                setProgressBarIndeterminateVisibility(false);
-
                 if (e == null) {
                     Log.d("Parse Query status","Parse Query Successful");
 
@@ -84,15 +81,6 @@ public class TakeSurveyFragment extends Fragment {
             }
         });
 
-        
-
-        // TEST CODE BELOW
-        ArrayList<String> answers = new ArrayList<>();
-        answers.add("SE");
-        answers.add("CMPE");
-
-        Question q = new Question("Are you an SE or CMPE major?", answers,  false, "Admin");
-        addQuestionSet(q);
         return v;
     }
 

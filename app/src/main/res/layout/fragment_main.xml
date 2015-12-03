@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="top"
-    style="@style/AppTheme"
-    android:background="@color/com_facebook_button_login_silver_background_color_pressed">
+    style="@style/AppTheme">
 
     <TextView
         android:text="Choose an option:"
+        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextViewTheme"/>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:orientation="horizontal"
