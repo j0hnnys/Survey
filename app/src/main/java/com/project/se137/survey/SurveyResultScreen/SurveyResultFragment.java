@@ -86,6 +86,8 @@ public class SurveyResultFragment extends Fragment {
 
         // Add question to layout
         TextView questionToAdd = new TextView(getActivity());
+        // Format/style the question TextView
+        questionToAdd.setTextAppearance(R.style.ResultQuestionsTheme);
         questionToAdd.setText(q.getQuestion());
 
         linearLayout.addView(questionToAdd);
@@ -119,11 +121,10 @@ public class SurveyResultFragment extends Fragment {
 
             try {
                 List<ParseObject> objects = query.find();
-                System.out.println(objects.get(0).getString("surveyName"));
-                System.out.println(objects.get(0).getString("question"));
-                System.out.println("SHOULD BE A : " + "A" + String.valueOf(i + 1));
-                System.out.println("SHOULD BE AN INT : " + objects.get(0).getNumber("A" + String.valueOf(i+1)).intValue());
+                // Stores the result number in resultNum
+                // by getting the number from A1, A2, A3, or A4 (from Parse Database)
                 int resultNum = objects.get(0).getNumber("A" + String.valueOf(i+1)).intValue();
+                // Set resultNumber TextView to respective value
                 resultNumber.setText(String.valueOf(resultNum));
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -133,9 +134,10 @@ public class SurveyResultFragment extends Fragment {
 
             LinearLayout subL = new LinearLayout(context);
             subL.setOrientation(LinearLayout.HORIZONTAL);
+
+            // Add Result TextViews to view layout
             subL.addView(resultNumber);
             subL.addView(resultName);
-
             subLayout.addView(subL);
         }
 

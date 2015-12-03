@@ -90,10 +90,11 @@ public class TakeSurveyFragment extends Fragment {
                         String questionText = object.getString("question");
                         Boolean multi = object.getBoolean("multi");
                         List<String> possibleAnswers = object.getList("possibleAnswers");
-                        String creator = object.getString("creator");
+//                        String creator = object.getString("creator");
 
                         // Creates QuestionObject "survey" and calls addQuestionSet()
-                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
+//                        Question survey = new Question(questionText, possibleAnswers, multi, creator);
+                        Question survey = new Question(questionText, possibleAnswers, multi);
                         addQuestionSet(survey);
                     }
                 } else {
@@ -112,7 +113,7 @@ public class TakeSurveyFragment extends Fragment {
     private void addQuestionSet(Question q) {
         // Add question to layout
         TextView question = new TextView(getActivity());
-        question.setText(getString(R.string.creator_and_question_placeholder, q.getCreator(), q.getQuestion()));
+        question.setText(q.getQuestion());
 
         surveyLayout.addView(question);
 
