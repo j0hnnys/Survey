@@ -15,7 +15,6 @@ import com.project.se137.survey.TakeSurveyScreen.TakeSurveyFragment;
  */
 public class SurveyResultActivity extends SingleFragmentActivity {
 
-
     @Override
     protected Fragment getFragment() {
         return new SurveyResultFragment();

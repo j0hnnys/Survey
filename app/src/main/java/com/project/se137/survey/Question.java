@@ -8,8 +8,6 @@ import java.util.List;
  * Answers that allow only one choice will be displayed as Radio buttons
  */
 public class Question {
-    // Question ID
-    private String mQuestionID;
     // The question
     private String mQuestion;
     // Possible answers to the question
@@ -26,6 +24,12 @@ public class Question {
         mMultiAnswer = multiAnswer;
         mCreator = creator;
     }
+    public Question(String question, List<String> answers, boolean multiAnswer) {
+        mQuestion = question;
+        mPossibleAnswers = answers;
+        mMultiAnswer = multiAnswer;
+    }
+
 
 
     @Override

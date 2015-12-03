@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.project.se137.survey.CreateSurveyScreen.CreateSurveyActivity;
+import com.project.se137.survey.GlobalVariable;
 import com.project.se137.survey.LogInScreen.LogInActivity;
 import com.project.se137.survey.R;
 import com.project.se137.survey.SurveyListScreen.SurveyListActivity;
+import com.project.se137.survey.SurveyResultScreen.SurveyResultActivity;
 
 
 public class MainFragment extends Fragment {
@@ -45,15 +47,17 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SurveyListActivity.class);
+                GlobalVariable.result = 0;
                 startActivity(intent);
             }
         });
 
-        //RESULTS ->
+        //RESULTS -> SurveyResultActivity
         resultsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), SurveyListActivity.class);
+                GlobalVariable.result = 1;
                 startActivity(intent);
             }
         });

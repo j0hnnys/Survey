@@ -111,7 +111,8 @@ public class TakeSurveyFragment extends Fragment {
     private void addQuestionSet(Question q) {
         // Add question to layout
         TextView question = new TextView(getActivity());
-        question.setText(getString(R.string.creator_and_question_placeholder, q.getCreator(), q.getQuestion()) );
+        question.setText(getString(R.string.creator_and_question_placeholder, q.getCreator(), q.getQuestion()));
+
         surveyLayout.addView(question);
 
         // Add answers corresponding to question

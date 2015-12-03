@@ -10,12 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.project.se137.survey.GlobalVariable;
 import com.project.se137.survey.R;
 import com.project.se137.survey.Survey;
+import com.project.se137.survey.SurveyResultScreen.SurveyResultActivity;
 import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;
 import com.project.se137.survey.TakeSurveyScreen.TakeSurveyFragment;
 
@@ -79,9 +82,23 @@ public class SurveyListFragment extends Fragment {
         // Initializes TakeSurveyActivity when user selects a survey to take
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
+            Intent intent = customGetIntent();
             intent.putExtra(SurveyListActivity.SURVEY_ID, surveyNameButton.getText().toString());
             startActivity(intent);
+        }
+    }
+
+    /**
+     * Checks for whether activitySwitch is 0 or 1 to determine whether
+     * to return Intent with TakeSurveyActivity or SurveyResultActivity
+     * @return Intent that varies depending on activitySwitch's value.
+     */
+    private Intent customGetIntent() {
+
+        if (GlobalVariable.result == 0) {
+            return new Intent(getActivity(), TakeSurveyActivity.class);
+        } else {
+            return new Intent(getActivity(), SurveyResultActivity.class);
         }
     }
 

@@ -8,7 +8,9 @@ import android.util.Log;
  */
 public class GlobalVariable extends Activity{
 
-    static String loggedInUser;
+    public static String loggedInUser;
+
+    public static int result;
 
     public static String getLoggedInUser() {
         return loggedInUser;
