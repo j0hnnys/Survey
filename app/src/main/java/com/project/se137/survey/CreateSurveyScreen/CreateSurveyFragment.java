@@ -131,7 +131,7 @@ public class CreateSurveyFragment extends Fragment {
                     newQuestion.put("question", q.getQuestion());
                     newQuestion.put("multi", q.isMultiAnswer());
                     newQuestion.addAll("possibleAnswers", q.getPossibleAnswers());
-                    newQuestion.put("creator", GlobalVariable.getLoggedInUser());
+                    newQuestion.put("creator", q.getCreator());
                     newQuestion.saveInBackground();
 
                     // Create a new results entry for the question

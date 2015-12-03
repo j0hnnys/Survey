@@ -17,7 +17,7 @@ public class Question {
     //  True -> CheckBox, False -> Radio
     private boolean mMultiAnswer;
     // Creator of the Survey Attribute - for UserManagement
-    private String mCreator;
+    private String mCreator = GlobalVariable.getLoggedInUser();
 
 
     public Question(String question, List<String> answers, boolean multiAnswer, String creator) {
@@ -65,12 +65,8 @@ public class Question {
         mPossibleAnswers = possibleAnswers;
     }
 
-    //Getter and Setter String Creator
+    //Getter  String Creator
     public String getCreator() {
         return mCreator;
     }
-    public void setCreator(String creator) {
-        mCreator = creator;
-    }
-
 }
