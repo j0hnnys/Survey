@@ -1,6 +1,7 @@
 package com.project.se137.survey.TakeSurveyScreen;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
