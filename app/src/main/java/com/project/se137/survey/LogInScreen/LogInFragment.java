@@ -137,7 +137,7 @@ public class LogInFragment extends Fragment {
 
                     if (password.equals(rightPassword)) {
                         //Showing a message
-                        Toast.makeText(getContext(), "Login was successfull!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Login successful!", Toast.LENGTH_SHORT).show();
                         // Saving the username to a global variable
                         loggedInUser.setLoggedInUser(username);
 
