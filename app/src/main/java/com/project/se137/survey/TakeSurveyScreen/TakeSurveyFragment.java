@@ -120,7 +120,6 @@ public class TakeSurveyFragment extends Fragment {
         for (String answer : answers) {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setText(answer);
-            radioButton.setTextColor(Color.BLACK);
             radioGroup.addView(radioButton);
         }
         return radioGroup;
@@ -140,7 +139,6 @@ public class TakeSurveyFragment extends Fragment {
         for (String answer : answers) {
             CheckBox checkbox = new CheckBox(context);
             checkbox.setText(answer);
-            checkbox.setTextColor(Color.BLACK);
             linearLayout.addView(checkbox);
         }
         return linearLayout;

@@ -9,7 +9,7 @@
         <item name="android:color">@android:color/black</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">35sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
@@ -30,10 +30,20 @@
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
-    <style name="InputTheme" parent="AppTheme">
-        <item name="android:background">@android:color/holo_red_light</item>
+    <style name="TakeSurveyTheme" parent="AppTheme">
+        <item name="android:background">@android:color/holo_purple</item>
     </style>
-
+    <style name="CreateSurveyTheme" parent="AppTheme">
+        <item name="android:background">@android:color/holo_red_light</item>
+        <item name="android:colorBackground">@android:color/holo_red_light</item>
+        <item name="android:color">@android:color/holo_red_light</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:editTextBackground">@android:color/holo_red_light</item>
+        <item name="android:editTextColor">@android:color/holo_red_light</item>
+    </style>
+    <style name="ResultsSurveyTheme" parent="AppTheme">
+        <item name="android:background">@android:color/holo_green_light</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
