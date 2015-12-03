@@ -1,6 +1,7 @@
 package com.project.se137.survey.TakeSurveyScreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
 
@@ -49,7 +52,7 @@ public class TakeSurveyFragment extends Fragment {
         submitSelectionButton = (Button) v.findViewById(R.id.submit_selection_button);
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
-        
+
         answerViews = new ArrayList<>();
 
         /*
@@ -72,7 +75,7 @@ public class TakeSurveyFragment extends Fragment {
             @Override
             public void done(List<ParseObject> results, ParseException e) {
                 if (e == null) {
-                    Log.d("Parse Query status","Parse Query Successful");
+                    Log.d("Parse Query status", "Parse Query Successful");
 
                     // Retrieving the Data from the "Questions" ParseObject
                     for (ParseObject object : results) {
@@ -173,27 +176,35 @@ public class TakeSurveyFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(View view : answerViews){
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Results");
-                    query.whereContains("surveyName", SURVEY_ID);
-                    query.whereContains("question", view.getTag(1).toString());
-                    final String answerNum = view.getTag(2).toString();
-                    query.findInBackground(new FindCallback<ParseObject>() {
-                        @Override
-                        public void done(List<ParseObject> results, ParseException e) {
-                            if (e == null) {
-                                Log.d("Parse Query status","Parse Query Successful");
-                                // Retrieving the Data from the "Questions" ParseObject
-                                for (ParseObject object : results) {
-                                    object.increment(answerNum);
-                                }
-                            } else {
-                                Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
-                            }
-                        }
-                    });
-                }
                 Log.d("Submit:", "Selection Submit Method Called");
+                for(View view : answerViews){
+                    if((view instanceof CheckBox && ((CheckBox)view).isChecked()) || (view instanceof RadioButton && ((RadioButton)view).isChecked())){
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Results");
+                        query.whereContains("surveyName", SURVEY_ID);
+                        query.whereContains("question", view.getTag(1).toString());
+                        final String answerNum = view.getTag(2).toString();
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> results, ParseException e) {
+                                if (e == null) {
+                                    Log.d("Parse Query status", "Parse Query Successful");
+                                    // Retrieving the Data from the "Questions" ParseObject
+                                    for (ParseObject object : results) {
+                                        object.increment(answerNum);
+                                    }
+                                } else {
+                                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                                }
+                            }
+                        });
+                    }
+                }
+
+                Toast.makeText(v.getContext(), "Survey completed!", Toast.LENGTH_SHORT).show();
+
+                // Transition back to the main menu
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
         };
     }
