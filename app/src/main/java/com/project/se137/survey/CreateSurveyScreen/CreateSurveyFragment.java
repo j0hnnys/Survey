@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
+import com.project.se137.survey.GlobalVariable;
 import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
@@ -72,7 +73,7 @@ public class CreateSurveyFragment extends Fragment {
                 ArrayList<String> answers;
                 boolean multiAnswer;
                 // Should implement a creator attribute for survey for UserManagement
-                String creator = "Admin";
+                String creator = GlobalVariable.getLoggedInUser();
 
                 // Obtain question and clear text
                 q = questionEditText.getText().toString();
@@ -114,7 +115,7 @@ public class CreateSurveyFragment extends Fragment {
                 ParseObject newSurvey = new ParseObject("Survey");
                 newSurvey.put("surveyName", surveyName);
                 newSurvey.put("surveyNumber", surveyID);
-                newSurvey.put("creator", "Admin"); // All users are admin at the moment
+                newSurvey.put("creator", GlobalVariable.getLoggedInUser());
                 newSurvey.saveInBackground();
 
                 for(Question q : survey){
@@ -124,7 +125,7 @@ public class CreateSurveyFragment extends Fragment {
                     newQuestion.put("question", q.getQuestion());
                     newQuestion.put("multi", q.isMultiAnswer());
                     newQuestion.addAll("possibleAnswers", q.getPossibleAnswers());
-                    newQuestion.put("creator", "Admin"); // All users are admin at the moment
+                    newQuestion.put("creator", GlobalVariable.getLoggedInUser());
                     newQuestion.saveInBackground();
 
                     // Create a new results entry for the question
