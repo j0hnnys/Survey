@@ -87,7 +87,6 @@ public class SurveyListFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
-            Toast.makeText(v.getContext(), "clicked!!", Toast.LENGTH_SHORT).show();
             intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameButton.getText().toString());
             startActivity(intent);
         }
