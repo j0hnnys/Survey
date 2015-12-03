@@ -66,18 +66,24 @@
         android:layout_height="100dp">
 
         <ImageView
+            android:id="@+id/take_survey_image_view"
             android:src="@drawable/survey_take"
             android:layout_weight="1"
+            android:elevation="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:id="@+id/create_survey_image_view"
             android:src="@drawable/survey_create"
             android:layout_weight="1"
+            android:elevation="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
+            android:id="@+id/survey_result_image_view"
             android:src="@drawable/survey_results"
             android:layout_weight="1"
+            android:elevation="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

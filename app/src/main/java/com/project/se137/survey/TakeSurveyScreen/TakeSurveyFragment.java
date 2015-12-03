@@ -41,6 +41,7 @@ public class TakeSurveyFragment extends Fragment {
 
     public static final String SURVEY_ID = "SURVEY";
 
+    // For parse queries and saves
     private static final int VIEW_TAG_1 = 1280504020;
     private static final int VIEW_TAG_2 = 1280504021;
 

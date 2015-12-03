@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -7,29 +7,174 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/CreateSurveyTheme">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:padding="10dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/CreateSurveyTheme">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Survey Name:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/survey_name_edit_text"
-                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/survey_name_edit_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Survey Name:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/survey_name_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/survey_name_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Q:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/question_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/question_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A1:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/answer1_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/answer1_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A2:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/answer2_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/answer2_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A3:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/answer3_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/answer3_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A4:"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/answer4_edit_text"
+                    />
+
+                <EditText
+                    android:id="@+id/answer4_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/multi_question_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Allow Multi Choice"
+                    android:textSize="16sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/answer4_edit_text"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -38,162 +183,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/add_button"
+                android:layout_weight="8"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Q:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/question_edit_text"
-                />
+                android:text="Add question"
+                android:textSize="15sp"
+                style="@style/ButtonTheme"/>
 
-            <EditText
-                android:id="@+id/question_edit_text"
-                android:layout_width="fill_parent"
+            <Button
+                android:id="@+id/complete_button"
+                android:layout_weight="14"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A1:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/answer1_edit_text"
-                />
-
-            <EditText
-                android:id="@+id/answer1_edit_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A2:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/answer2_edit_text"
-                />
-
-            <EditText
-                android:id="@+id/answer2_edit_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A3:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/answer3_edit_text"
-                />
-
-            <EditText
-                android:id="@+id/answer3_edit_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A4:"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/answer4_edit_text"
-                />
-
-            <EditText
-                android:id="@+id/answer4_edit_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/multi_question_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Allow Multi Choice"
-                android:textSize="16sp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/answer4_edit_text"
-                />
+                android:text="Create survey"
+                android:textSize="15sp"
+                style="@style/ButtonTheme"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/add_button"
-            android:layout_weight="8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add question to survey"
-            android:textSize="15sp"
-            style="@style/ButtonTheme"/>
-
-        <Button
-            android:id="@+id/complete_button"
-            android:layout_weight="14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create survey"
-            android:textSize="15sp"
-            style="@style/ButtonTheme"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

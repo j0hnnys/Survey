@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.project.se137.survey.CreateSurveyScreen.CreateSurveyActivity;
 import com.project.se137.survey.GlobalVariable;
@@ -21,6 +22,10 @@ public class MainFragment extends Fragment {
     Button createSurveyButton;
     Button takeSurveyButton;
     Button resultsButton;
+    ImageView createSurveyImageView;
+    ImageView takeSurveyImageView;
+    ImageView surveyResultsImageView;
+
 
     @Nullable
     @Override
@@ -33,36 +38,53 @@ public class MainFragment extends Fragment {
         takeSurveyButton = (Button) v.findViewById(R.id.take_survey_button);
         resultsButton = (Button) v.findViewById(R.id.results_button);
 
+        // initialize image views
+        createSurveyImageView = (ImageView) v.findViewById(R.id.create_survey_image_view);
+        takeSurveyImageView = (ImageView) v.findViewById(R.id.take_survey_image_view);
+        surveyResultsImageView = (ImageView) v.findViewById(R.id.survey_result_image_view);
+
         //CREATE -> CreateSurveyActivity
-        createSurveyButton.setOnClickListener(new View.OnClickListener() {
+        createSurveyButton.setOnClickListener(createSurveyOnClickListener());
+        createSurveyImageView.setOnClickListener(createSurveyOnClickListener());
+        //SURVEYS -> TakeSurveyActivity
+        takeSurveyButton.setOnClickListener(takeSurveyOnClickListener());
+        takeSurveyImageView.setOnClickListener(takeSurveyOnClickListener());
+        //RESULTS -> SurveyResultActivity
+        resultsButton.setOnClickListener(surveyResultOnClickListener());
+        surveyResultsImageView.setOnClickListener(surveyResultOnClickListener());
+
+        return v;
+    }
+
+    private View.OnClickListener createSurveyOnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CreateSurveyActivity.class);
                 startActivity(intent);
             }
-        });
+        };
+    }
 
-        //SURVEYS -> TakeSurveyActivity
-        takeSurveyButton.setOnClickListener(new View.OnClickListener() {
+    private View.OnClickListener takeSurveyOnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SurveyListActivity.class);
                 GlobalVariable.result = 0;
                 startActivity(intent);
             }
-        });
+        };
+    }
 
-        //RESULTS -> SurveyResultActivity
-        resultsButton.setOnClickListener(new View.OnClickListener() {
+    private View.OnClickListener surveyResultOnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SurveyListActivity.class);
                 GlobalVariable.result = 1;
                 startActivity(intent);
             }
-        });
-
-
-        return v;
+        };
     }
 }
