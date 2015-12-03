@@ -1,5 +1,6 @@
 package com.project.se137.survey.LogInScreen;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.project.se137.survey.GlobalVariable;
+import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.R;
 
 /**
@@ -86,6 +88,10 @@ public class LogInFragment extends Fragment {
 
                 if (validated(username, password, passwordRepeat)) {
                     logIn(username, password);
+
+                    // Goes to main screen if login is successful
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
                 }
             }
         };

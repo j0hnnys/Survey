@@ -32,13 +32,18 @@ import java.util.List;
  */
 public class TakeSurveyFragment extends Fragment {
 
-    LinearLayout surveyLayout;
-    Context context;
-    Button submitSelectionButton;
+    private LinearLayout surveyLayout;
+    private Context context;
+    private Button submitSelectionButton;
 
-    ArrayList<View> answerViews;
+    private ArrayList<View> answerViews;
+    private String selectedSurvey;
 
     public static final String SURVEY_ID = "SURVEY";
+
+    private static final int VIEW_TAG_1 = 1280504020;
+    private static final int VIEW_TAG_2 = 1280504021;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +58,7 @@ public class TakeSurveyFragment extends Fragment {
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
 
-        answerViews = new ArrayList<>();
+        answerViews = new ArrayList<View>();
 
         /*
          * Querying a ParseObject:
@@ -64,11 +69,11 @@ public class TakeSurveyFragment extends Fragment {
 //         */
         // Get survey name to that was chosen from SurveyListFragment
         Bundle args = getArguments();
-        String surveyName = args.getString(SURVEY_ID);
+        selectedSurvey = args.getString(SURVEY_ID);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Questions");
         // Filter query to find questions related to survey
-        query.whereEqualTo("surveyName", surveyName);
+        query.whereEqualTo("surveyName", selectedSurvey);
 
         query.findInBackground(new FindCallback<ParseObject>() {
 
@@ -139,8 +144,8 @@ public class TakeSurveyFragment extends Fragment {
             radioGroup.addView(radioButton);
 
             // 1 = question, 2 = answer#
-            radioButton.setTag(1, question);
-            radioButton.setTag(2, "A" + (i + 1));
+            radioButton.setTag(VIEW_TAG_1, question);
+            radioButton.setTag(VIEW_TAG_2, "A" + String.valueOf(i + 1));
             answerViews.add(radioButton);
         }
         return radioGroup;
@@ -165,8 +170,8 @@ public class TakeSurveyFragment extends Fragment {
             linearLayout.addView(checkbox);
 
             // 1 = question, 2 = answer#
-            checkbox.setTag(1, question);
-            checkbox.setTag(2, "A" + (i + 1));
+            checkbox.setTag(VIEW_TAG_1, question);
+            checkbox.setTag(VIEW_TAG_2, "A" + String.valueOf(i + 1));
             answerViews.add(checkbox);
         }
         return linearLayout;
@@ -179,21 +184,24 @@ public class TakeSurveyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("Submit:", "Selection Submit Method Called");
+
                 for(View view : answerViews){
+
                     if((view instanceof CheckBox && ((CheckBox)view).isChecked()) || (view instanceof RadioButton && ((RadioButton)view).isChecked())){
                         ParseQuery<ParseObject> query = ParseQuery.getQuery("Results");
-                        query.whereContains("surveyName", SURVEY_ID);
-                        query.whereContains("question", view.getTag(1).toString());
-                        final String answerNum = view.getTag(2).toString();
+                        query.whereEqualTo("surveyName", selectedSurvey);
+                        query.whereEqualTo("question", view.getTag(VIEW_TAG_1).toString());
+
+                        final String answerNum = view.getTag(VIEW_TAG_2).toString();
+                        Toast.makeText(getContext(), view.getTag(VIEW_TAG_1).toString() + "|" + answerNum, Toast.LENGTH_SHORT).show();
+
                         query.findInBackground(new FindCallback<ParseObject>() {
                             @Override
                             public void done(List<ParseObject> results, ParseException e) {
                                 if (e == null) {
                                     Log.d("Parse Query status", "Parse Query Successful");
-                                    // Retrieving the Data from the "Questions" ParseObject
-                                    for (ParseObject object : results) {
-                                        object.increment(answerNum);
-                                    }
+                                    results.get(0).increment(answerNum);
+                                    results.get(0).saveInBackground();
                                 } else {
                                     Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
                                 }
