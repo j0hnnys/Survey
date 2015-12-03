@@ -1,4 +1,4 @@
-package com.project.se137.survey.SurveyResultScreen;
+package com.project.se137.survey.SurveyListScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,21 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.project.se137.survey.MainStartScreen.MainActivity;
-import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
 import com.project.se137.survey.Survey;
 import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;

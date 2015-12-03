@@ -1,4 +1,4 @@
-package com.project.se137.survey.SurveyResultScreen;
+package com.project.se137.survey.SurveyListScreen;
 
 import android.support.v4.app.Fragment;
 

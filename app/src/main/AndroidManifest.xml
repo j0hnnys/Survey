@@ -21,7 +21,7 @@
         <activity android:name=".MainStartScreen.MainActivity"/>
         <activity android:name=".CreateSurveyScreen.CreateSurveyActivity"/>
         <activity android:name=".TakeSurveyScreen.TakeSurveyActivity"/>
-        <activity android:name=".SurveyResultScreen.SurveyListActivity"/>
+        <activity android:name=".SurveyListScreen.SurveyListActivity"/>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges=

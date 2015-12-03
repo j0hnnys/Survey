@@ -11,17 +11,14 @@ import android.widget.Button;
 
 import com.project.se137.survey.CreateSurveyScreen.CreateSurveyActivity;
 import com.project.se137.survey.LogInScreen.LogInActivity;
-import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.R;
-import com.project.se137.survey.SurveyResultScreen.SurveyListActivity;
-import com.project.se137.survey.TakeSurveyScreen.TakeSurveyActivity;
+import com.project.se137.survey.SurveyListScreen.SurveyListActivity;
 
 
 public class MainFragment extends Fragment {
     Button createSurveyButton;
     Button takeSurveyButton;
     Button resultsButton;
-    Button logInButton;
 
     @Nullable
     @Override
@@ -33,7 +30,6 @@ public class MainFragment extends Fragment {
         createSurveyButton = (Button) v.findViewById(R.id.create_survey_button);
         takeSurveyButton = (Button) v.findViewById(R.id.take_survey_button);
         resultsButton = (Button) v.findViewById(R.id.results_button);
-        logInButton = (Button) v.findViewById(R.id.log_in_button);
 
         //CREATE -> CreateSurveyActivity
         createSurveyButton.setOnClickListener(new View.OnClickListener() {
@@ -62,14 +58,6 @@ public class MainFragment extends Fragment {
             }
         });
 
-        //LOG IN -> LogInActivity
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LogInActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }
