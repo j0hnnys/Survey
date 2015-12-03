@@ -193,7 +193,6 @@ public class TakeSurveyFragment extends Fragment {
                         query.whereEqualTo("question", view.getTag(VIEW_TAG_1).toString());
 
                         final String answerNum = view.getTag(VIEW_TAG_2).toString();
-                        Toast.makeText(getContext(), view.getTag(VIEW_TAG_1).toString() + "|" + answerNum, Toast.LENGTH_SHORT).show();
 
                         query.findInBackground(new FindCallback<ParseObject>() {
                             @Override
