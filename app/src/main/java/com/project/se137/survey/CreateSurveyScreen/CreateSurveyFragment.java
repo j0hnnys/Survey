@@ -109,6 +109,12 @@ public class CreateSurveyFragment extends Fragment {
 
                 String surveyName = surveyEditText.getText().toString();
 
+                // Check for a valid survey
+                if(surveyName.isEmpty()){
+                    Toast.makeText(v.getContext(), "Name your survey!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Random rand = new Random(); // random int for the id at the moment
                 int surveyID = rand.nextInt();
 
