@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
 import com.project.se137.survey.R;
 import com.project.se137.survey.SingleFragmentActivity;
@@ -43,6 +44,7 @@ public class TakeSurveyActivity extends SingleFragmentActivity {
             fragment = getFragment();
             // add survey name (located inside of bundle) and add to fragment
             fragment.setArguments(args);
+            Toast.makeText(getApplicationContext(), "passed survey name!", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().add(R.id.survey_fragment_container, fragment).commit();
         }
 

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
+import com.project.se137.survey.GlobalVariable;
 import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
@@ -72,7 +73,7 @@ public class CreateSurveyFragment extends Fragment {
                 ArrayList<String> answers;
                 boolean multiAnswer;
                 // Should implement a creator attribute for survey for UserManagement
-                String creator = "";
+                String creator = GlobalVariable.getLoggedInUser();
 
                 // Obtain question and clear text
                 q = questionEditText.getText().toString();
@@ -83,12 +84,18 @@ public class CreateSurveyFragment extends Fragment {
 
                 // Check if it is a multi-answer question
                 multiAnswer = isMultiCheckBox.isChecked();
+                isMultiCheckBox.setChecked(false);
 
-                // Create question object and add to survey
-                Question question = new Question(q, answers, multiAnswer, creator);
-                survey.add(question);
+                // Checks for valid question
+                if(!q.isEmpty() && answers.size() >= 2){
+                    // Create question object and add to survey
+                    Question question = new Question(q, answers, multiAnswer, creator);
+                    survey.add(question);
 
-                Toast.makeText(v.getContext(), "Question added to survey!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Question added to survey!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(v.getContext(), "Invalid question!", Toast.LENGTH_SHORT).show();
+                }
             }
         };
     }
@@ -108,19 +115,31 @@ public class CreateSurveyFragment extends Fragment {
                 ParseObject newSurvey = new ParseObject("Survey");
                 newSurvey.put("surveyName", surveyName);
                 newSurvey.put("surveyNumber", surveyID);
-                newSurvey.put("creator", "Admin"); // All users are admin at the moment
+                newSurvey.put("creator", GlobalVariable.getLoggedInUser());
                 newSurvey.saveInBackground();
 
-                // Put all questions to the db
                 for(Question q : survey){
+                    // Put all questions to the db
                     ParseObject newQuestion = new ParseObject("Questions");
                     newQuestion.put("surveyName", surveyName);
                     newQuestion.put("question", q.getQuestion());
                     newQuestion.put("multi", q.isMultiAnswer());
                     newQuestion.addAll("possibleAnswers", q.getPossibleAnswers());
-                    newQuestion.put("creator", "Admin"); // All users are admin at the moment
+                    newQuestion.put("creator", GlobalVariable.getLoggedInUser());
                     newQuestion.saveInBackground();
+
+                    // Create a new results entry for the question
+                    ParseObject newResult = new ParseObject("Results");
+                    newResult.put("surveyName", surveyName);
+                    newResult.put("question", q.getQuestion());
+                    newResult.put("A1", 0);
+                    newResult.put("A2", 0);
+                    newResult.put("A3", 0);
+                    newResult.put("A4", 0);
+                    newResult.saveInBackground();
                 }
+
+                Toast.makeText(v.getContext(), "Survey completed!", Toast.LENGTH_SHORT).show();
 
                 // Transition back to the main menu
                 Intent intent = new Intent(getActivity(), MainActivity.class);

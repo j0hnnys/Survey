@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,26 +67,28 @@ public class SurveyListFragment extends Fragment {
 
     private class SurveyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView surveyNameTextView;
+        private Button surveyNameButton;
 
         public SurveyHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
 
             // Initialize name of survey inside SurveyHolder
-            surveyNameTextView = (TextView) itemView.findViewById(R.id.list_survey_name_text_view);
+            surveyNameButton = (Button) itemView.findViewById(R.id.list_survey_name_button);
+
+            surveyNameButton.setOnClickListener(this);
         }
 
         // Bind survey to the holder and set name accordingly
         public void bindSurvey(Survey s) {
-            surveyNameTextView.setText(s.getName());
+            surveyNameButton.setText(s.getName());
         }
 
         // Initializes TakeSurveyActivity when user selects a survey to take
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), TakeSurveyActivity.class);
-            intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameTextView.getText().toString());
+            Toast.makeText(v.getContext(), "clicked!!", Toast.LENGTH_SHORT).show();
+            intent.putExtra(TakeSurveyFragment.SURVEY_ID, surveyNameButton.getText().toString());
             startActivity(intent);
         }
     }
