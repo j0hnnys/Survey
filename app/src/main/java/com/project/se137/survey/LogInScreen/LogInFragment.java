@@ -84,14 +84,10 @@ public class LogInFragment extends Fragment {
 
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                String passwordRepeat = passwordRepeatEditText.getText().toString();
 
-                if (validated(username, password, passwordRepeat)) {
+                if (validated(username, password)) {
                     logIn(username, password);
 
-                    // Goes to main screen if login is successful
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
                 }
             }
         };
@@ -106,9 +102,8 @@ public class LogInFragment extends Fragment {
 
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                String passwordRepeat = passwordRepeatEditText.getText().toString();
 
-                if (validated(username, password, passwordRepeat)) {
+                if (validated(username, password)) {
                     createAccount(username, password);
                 }
             }
@@ -141,8 +136,9 @@ public class LogInFragment extends Fragment {
                         // Saving the username to a global variable
                         loggedInUser.setLoggedInUser(username);
 
-                        //Intent intent = new Intent(getActivity(), MainActivity.class);
-                        //startActivity(intent);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+
                         Log.d("Parse", "Retrieved the object.");
 
                     } else {
@@ -159,27 +155,39 @@ public class LogInFragment extends Fragment {
 
         final String username = u;
         final String password = p;
+        final String passwordRepeat = passwordRepeatEditText.getText().toString();
 
         ParseQuery<ParseObject> logIn = ParseQuery.getQuery("User");
         logIn.whereEqualTo("username", username);
         logIn.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject objects, ParseException e) {
-                if (objects == null) {
 
-                    ParseObject account = new ParseObject("User");
-                    account.put("username", username);
-                    account.put("password", password);
-                    account.saveInBackground();
+                if (!password.equals(passwordRepeat)) {
+                    passwordRepeatEditText.setError("Does not match");
+                    //passwordRepeatEditText.setTransformationMethod(null);
+                    Toast.makeText(getContext(), "Password and PasswordRepeat must match", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
-                    usernameEditText.setError("Try another");
+
+                    if (objects == null) {
+
+                        ParseObject account = new ParseObject("User");
+                        account.put("username", username);
+                        account.put("password", password);
+                        account.saveInBackground();
+
+                        Toast.makeText(getContext(), "New Account created!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getContext(), "Username is already in use. Please, choose another Username", Toast.LENGTH_SHORT).show();
+                        usernameEditText.setError("Try another");
+                    }
                 }
             }
         });
     }
 
-    private boolean validated(String username, String password, String passwordRepeat) {
+    private boolean validated(String username, String password) {
 
         if (username.length() == 0) {
             usernameEditText.setError("Username is required!");
@@ -212,10 +220,6 @@ public class LogInFragment extends Fragment {
         } else if (username.equals(password)) {
             Toast.makeText(getContext(), "Username and Password must be different", Toast.LENGTH_SHORT).show();
 
-        } else if (!password.equals(passwordRepeat)) {
-            passwordRepeatEditText.setError("Does not match");
-            passwordRepeatEditText.setTransformationMethod(null);
-            Toast.makeText(getContext(), "Password and PasswordRepeat must match", Toast.LENGTH_SHORT).show();
         } else {
 
             return true;
