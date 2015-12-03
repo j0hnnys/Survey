@@ -129,6 +129,7 @@ public class TakeSurveyFragment extends Fragment {
      */
     private RadioGroup createRadioGroup(String question, List<String> answers) {
         RadioGroup radioGroup = new RadioGroup(context);
+        radioGroup.setOrientation(LinearLayout.VERTICAL);
 
         // Loop through answer list and add a radio button for each one.
         for (int i = 0; i < answers.size(); i++) {
@@ -154,6 +155,7 @@ public class TakeSurveyFragment extends Fragment {
      */
     private LinearLayout createCheckBoxGroup(String question, List<String> answers) {
         LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         // Loop through answer list and add a CheckBox to linearLayout for each one.
         for (int i = 0; i < answers.size(); i++) {
