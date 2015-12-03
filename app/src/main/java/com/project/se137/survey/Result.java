@@ -6,13 +6,13 @@ import java.util.ArrayList;
  * Stores the results of a completed survey.
  */
 public class Result {
-    String mQuestionId;
+    String mSurvey;
     String mQuestion;
-    String mAnswer;
+    Boolean[] mAnswer;
 
     // Constructor. Takes in survey name/id, question, and seletced answer
-    public Result(String s, String q, String a){
-        mQuestionId = s;
+    public Result(String s, String q, Boolean[] a){
+        mSurvey = s;
         mQuestion = q;
         mAnswer = a;
     }
@@ -21,11 +21,11 @@ public class Result {
         mQuestion = q;
     }
 
-    public String getAnswer() {
+    public Boolean[] getAnswers() {
         return mAnswer;
     }
 
-    public void setAnswer(String a) {
+    public void setAnswers(Boolean[] a) {
         mAnswer = a;
     }
 

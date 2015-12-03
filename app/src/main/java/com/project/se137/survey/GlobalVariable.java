@@ -8,14 +8,14 @@ import android.util.Log;
  */
 public class GlobalVariable extends Activity{
 
-    String loggedInUser;
+    static String loggedInUser;
 
-    public String getLoggedInUser() {
+    public static String getLoggedInUser() {
         return loggedInUser;
     }
 
-    public void setLoggedInUser(String loggedInUser) {
-        this.loggedInUser = loggedInUser;
+    public static void setLoggedInUser(String loggedInUser) {
+        GlobalVariable.loggedInUser = loggedInUser;
         Log.d("setLoggedInUser:", loggedInUser);
     }
 
