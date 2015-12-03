@@ -1,8 +1,6 @@
 package com.project.se137.survey.TakeSurveyScreen;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,13 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.project.se137.survey.MainStartScreen.MainActivity;
 import com.project.se137.survey.Question;
 import com.project.se137.survey.R;
 
@@ -35,8 +31,6 @@ public class TakeSurveyFragment extends Fragment {
     LinearLayout surveyLayout;
     Context context;
     Button submitSelectionButton;
-
-    ArrayList<View> answerViews;
 
     public static final String SURVEY_ID = "SURVEY";
 
@@ -53,15 +47,6 @@ public class TakeSurveyFragment extends Fragment {
         // method submitSelection to be implemented!!
         submitSelectionButton.setOnClickListener(submitSelectionListener());
 
-        answerViews = new ArrayList<>();
-
-        /*
-         * Querying a ParseObject:
-//         * 0. Creating a query to Parse.
-//         * 1. Retrieves the data from the Question ParseObject.
-//         * 2. Using that data, we create an QuestionObject called survey.
-//         * 3. Calling addQuestionSet(), passing survey as an QuestionObject.
-//         */
         // Get survey name to that was chosen from SurveyListFragment
         Bundle args = getArguments();
         String surveyName = args.getString(SURVEY_ID);
@@ -75,7 +60,7 @@ public class TakeSurveyFragment extends Fragment {
             @Override
             public void done(List<ParseObject> results, ParseException e) {
                 if (e == null) {
-                    Log.d("Parse Query status", "Parse Query Successful");
+                    Log.d("Parse Query status","Parse Query Successful");
 
                     // Retrieving the Data from the "Questions" ParseObject
                     for (ParseObject object : results) {
@@ -99,6 +84,7 @@ public class TakeSurveyFragment extends Fragment {
         return v;
     }
 
+
     /**
      * Adds a question and its set of answers to the layout view
      * @param q the Question class that contains the QA information
@@ -113,10 +99,10 @@ public class TakeSurveyFragment extends Fragment {
         View view;
         if (q.isMultiAnswer()) {
         // Create CheckBoxes if true
-            view = createCheckBoxGroup(q.getQuestion(), q.getPossibleAnswers());
+            view = createCheckBoxGroup(q.getPossibleAnswers());
         } else {
         // else create radiogroup
-            view = createRadioGroup(q.getQuestion(), q.getPossibleAnswers());
+            view = createRadioGroup(q.getPossibleAnswers());
         }
         surveyLayout.addView(view);
     }
@@ -127,24 +113,14 @@ public class TakeSurveyFragment extends Fragment {
      * @param answers answers to create radio buttons from
      * @return radiogroup representing collection of answers
      */
-    private RadioGroup createRadioGroup(String question, List<String> answers) {
+    private RadioGroup createRadioGroup(List<String> answers) {
         RadioGroup radioGroup = new RadioGroup(context);
 
         // Loop through answer list and add a radio button for each one.
-        for (int i = 0; i < answers.size(); i++) {
+        for (String answer : answers) {
             RadioButton radioButton = new RadioButton(context);
-<<<<<<< HEAD
             radioButton.setText(answer);
-=======
-            radioButton.setText(answers.get(i));
-            radioButton.setTextColor(Color.BLACK);
->>>>>>> origin/master
             radioGroup.addView(radioButton);
-
-            // 1 = question, 2 = answer#
-            radioButton.setTag(1, question);
-            radioButton.setTag(2, "A" + (i + 1));
-            answerViews.add(radioButton);
         }
         return radioGroup;
     }
@@ -156,24 +132,14 @@ public class TakeSurveyFragment extends Fragment {
      * @param answers answers to create CheckBoxes from
      * @return LinearLayout containing the collection of answers
      */
-    private LinearLayout createCheckBoxGroup(String question, List<String> answers) {
+    private LinearLayout createCheckBoxGroup(List<String> answers) {
         LinearLayout linearLayout = new LinearLayout(context);
 
         // Loop through answer list and add a CheckBox to linearLayout for each one.
-        for (int i = 0; i < answers.size(); i++) {
+        for (String answer : answers) {
             CheckBox checkbox = new CheckBox(context);
-<<<<<<< HEAD
             checkbox.setText(answer);
-=======
-            checkbox.setText(answers.get(i));
-            checkbox.setTextColor(Color.BLACK);
->>>>>>> origin/master
             linearLayout.addView(checkbox);
-
-            // 1 = question, 2 = answer#
-            checkbox.setTag(1, question);
-            checkbox.setTag(2, "A" + (i + 1));
-            answerViews.add(checkbox);
         }
         return linearLayout;
     }
@@ -185,34 +151,6 @@ public class TakeSurveyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("Submit:", "Selection Submit Method Called");
-                for(View view : answerViews){
-                    if((view instanceof CheckBox && ((CheckBox)view).isChecked()) || (view instanceof RadioButton && ((RadioButton)view).isChecked())){
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Results");
-                        query.whereContains("surveyName", SURVEY_ID);
-                        query.whereContains("question", view.getTag(1).toString());
-                        final String answerNum = view.getTag(2).toString();
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> results, ParseException e) {
-                                if (e == null) {
-                                    Log.d("Parse Query status", "Parse Query Successful");
-                                    // Retrieving the Data from the "Questions" ParseObject
-                                    for (ParseObject object : results) {
-                                        object.increment(answerNum);
-                                    }
-                                } else {
-                                    Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
-                                }
-                            }
-                        });
-                    }
-                }
-
-                Toast.makeText(v.getContext(), "Survey completed!", Toast.LENGTH_SHORT).show();
-
-                // Transition back to the main menu
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
             }
         };
     }
