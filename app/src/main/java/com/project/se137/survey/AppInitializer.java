@@ -11,16 +11,20 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by stephenpiazza on 11/18/15.
+ * Created by Johnny Nguyen on 11/2/15.
  */
 public class AppInitializer extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
 
+        // ApplicationID is unique to the Parse database the app is associated with
         //Initializes conection to Parse with applicationID and clientID provided by Parse
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
+        Parse.initialize(this, "jHi5qznicVuK1osvrqlks7vSbOsRMDctGHHr0tXd",
+                "pWLM1nizogLHEkE0aCxC7CwFh2rebWoGN1Iw3n61");
+
+
         //DEBUG
         Log.d("TAG", "Parse enabled");
         FacebookSdk.sdkInitialize(getApplicationContext());

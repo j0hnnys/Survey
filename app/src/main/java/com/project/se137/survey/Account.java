@@ -20,7 +20,6 @@ public class Account {
         return mUsername + " " + mPassword;
     }
 
-
     public String getUsername() {
         return mUsername;
     }
